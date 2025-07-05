@@ -1,0 +1,5 @@
+
+#include "modeldefs/pistol.txt"
+#include "modeldefs/sword.txt"
+#include "modeldefs/blunderbuss.txt"
+#include "modeldefs/nock.txt"

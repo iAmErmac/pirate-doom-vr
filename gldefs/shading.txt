@@ -1,0 +1,25 @@
+
+material texture "models/glove/glove.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/cutlass/sword.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/pistol/pistol.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/blunderbuss/shotgun.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/nock/nock.png"
+{
+	shader "shaders/SimSun.fp"
+}

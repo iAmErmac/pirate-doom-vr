@@ -1,0 +1,43 @@
+
+class DoomWeaponZ : DoomWeapon
+{
+	protected int weaponModel;
+	protected int pickupModel;
+	protected bool showWeaponFlash;
+	protected double weaponFlashAlpha;
+	protected bool weaponSmoke;
+	protected int offhandEquip;
+	
+	override void BeginPlay()
+	{
+		readSettings();
+	}
+	
+	override void Tick()
+	{
+		if(GetAge() && GetAge() % 100 == 0) readSettings();
+	}
+	
+	protected void readSettings()
+	{
+		weaponModel = CVar.GetCVar("pdvr_weapon_model").GetInt();
+		pickupModel = CVar.GetCVar("pdvr_weapon_pickup").GetInt();
+		showWeaponFlash = CVar.GetCVar("pdvr_muzzle_flash").GetBool();
+		weaponFlashAlpha = CVar.GetCVar("pdvr_flash_alpha").GetFloat();
+		weaponSmoke = CVar.GetCVar("pdvr_weapon_smoke").GetBool();
+		offhandEquip = CVar.GetCVar("pdvr_offhand_equip").GetInt();
+	}
+
+	action void A_SetWeaponModel(String AltModel)
+	{
+		if(invoker.weaponModel > 0 && player)
+		{
+			int mainhand = !invoker.bOffhandWeapon;
+			int wsprite = GetSpriteIndex(AltModel);
+			if(mainhand)
+				Player.GetPSprite(PSP_WEAPON).sprite = wsprite;
+			else
+				Player.GetPSprite(PSP_OFFHANDWEAPON).sprite = wsprite;
+		}
+	}
+}

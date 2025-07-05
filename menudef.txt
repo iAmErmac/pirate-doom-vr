@@ -1,0 +1,105 @@
+
+LISTMENU "MainMenu"
+{
+	IfGame(Doom, Chex)
+	{
+		StaticPatch 94, 2, "M_DOOM"
+		Position 97, 72
+		IfOption(ReadThis)
+		{
+			Position 97, 64
+		}
+	}
+	IfGame(Strife)
+	{
+		StaticPatch 84, 2, "M_STRIFE"
+		Position 97, 45
+	}
+	IfGame(Heretic)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 40, 10, "M_SKL01"
+		StaticPatch 232, 10, "M_SKL00"
+		Position 110, 56
+	}
+	IfGame(Hexen)
+	{
+		StaticPatch 88, 0, "M_HTIC"
+		StaticPatch 37, 80, "FBULB0"
+		StaticPatch 278, 80, "FBULA0"
+		Position 110, 56
+	}
+
+	IfGame(Doom, Strife, Chex)
+	{
+		PatchItem "M_NGAME", "n", "PlayerclassMenu"
+		ifOption(SwapMenu)
+		{
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+			PatchItem "M_OPTION","o", "OptionsMenu"
+			PatchItem "M_VROPT","o", "PDVROptions"
+		}
+		else
+		{
+			PatchItem "M_OPTION","o", "OptionsMenu"
+			PatchItem "M_VROPT","o", "PDVROptions"
+			PatchItem "M_LOADG", "l", "LoadGameMenu"
+			PatchItem "M_SAVEG", "s", "SaveGameMenu"
+		}
+		ifOption(ReadThis)
+		{
+			PatchItem "M_RDTHIS","r", "ReadThisMenu"
+		}
+		PatchItem "M_QUITG", "q", "QuitMenu"
+	}
+
+	IfGame(Heretic, Hexen)
+	{
+		TextItem "$MNU_NEWGAME", "n", "PlayerclassMenu"
+		TextItem "$MNU_OPTIONS", "o", "OptionsMenu"
+		TextItem "$MNU_PDVROPTIONS", "o", "PDVROptions"
+		TextItem "$MNU_GAMEFILES", "g", "GameFilesMenu"
+		TextItem "$MNU_INFO", "i", "ReadThisMenu"
+		TextItem "$MNU_QUITGAME", "q", "QuitMenu"
+	}
+}
+
+AddOptionMenu "OptionsMenu"
+{
+	Submenu "$PDVR_OPTIONS", "PDVROptions"
+}
+
+AddOptionMenu "OptionsMenuSimple"
+{
+	Submenu "$PDVR_OPTIONS", "PDVROptions"
+}
+
+OptionValue "PDVR_WeaponModel_Options" {
+	0, "$PDVR_WITH_HAND"
+	1, "$PDVR_WITHOUT_HAND"
+}
+
+OptionValue "PDVR_WeaponPickup_Options" {
+	0, "$PDVR_PICKUP_SPRITE"
+	1, "$PDVR_PICKUP_MODEL"
+}
+
+OptionValue "PDVR_Offhand_Options" {
+	0, "$PDVR_OFFHAND_CUTLASS"
+	1, "$PDVR_OFFHAND_PIPE"
+	2, "$PDVR_OFFHAND_NONE"
+}
+
+OptionMenu "PDVROptions"
+{
+	Title "$PDVR_OPTIONS"
+	
+	StaticText " "
+	Option "$PDVR_WEAPON_MODEL", 		"pdvr_weapon_model", 		"PDVR_WeaponModel_Options"
+	Option "$PDVR_WEAPON_PICKUP", 		"pdvr_weapon_pickup", 		"PDVR_WeaponPickup_Options"
+	Option "$PDVR_WEAPON_FLASH", 		"pdvr_muzzle_flash", 		"OnOff"
+	Slider "$PDVR_FLASH_ALPHA", 		"pdvr_flash_alpha", 		0.1, 1.0, 0.1, 1, pdvr_muzzle_flash
+	Option "$PDVR_WEAPON_SMOKE", 		"pdvr_weapon_smoke", 		"OnOff"
+	Option "$PDVR_OFFHAND_SWORD", 		"pdvr_offhand_equip", 		"PDVR_Offhand_Options"
+}

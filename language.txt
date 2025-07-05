@@ -1,0 +1,30 @@
+
+[enu default]
+
+MNU_PDVROPTIONS 		= "Mod Options";
+PDVR_OPTIONS 			= "Pirate Doom VR Options";
+
+PDVR_WEAPON_MODEL 		= "Weapon Model"; 
+PDVR_WEAPON_PICKUP 		= "Pickup Model"; 
+PDVR_WEAPON_FLASH 		= "Muzzle Flash"; 
+PDVR_FLASH_ALPHA 		= "Flash Opacity"; 
+PDVR_WEAPON_SMOKE 		= "Gun Barrel Smoke"; 
+PDVR_OFFHAND_SWORD 		= "Off-hand Equip";
+
+PDVR_WITH_HAND 			= "With Hand";
+PDVR_WITHOUT_HAND 		= "Without Hand";
+
+PDVR_PICKUP_SPRITE 		= "Sprite";
+PDVR_PICKUP_MODEL 		= "3D Model";
+
+PDVR_OFFHAND_CUTLASS		= "Cutlass";
+PDVR_OFFHAND_PIPE		= "Smoking Pipe";
+PDVR_OFFHAND_NONE		= "None";
+
+TAG_FLINTLOCK 			= "Flintlock Pistol";
+PICKUP_FLINTLOCK 		= "Picked up Flintlock Pistol";
+TAG_CUTLASS 			= "Cutlass";
+TAG_BLUNDERBUSS 		= "Blunderbuss";
+GOTBLUNDERBUSS 			= "You got the Blunderbuss!";
+TAG_NOCKVOLLEY 			= "Nock Volley Gun";
+GOTNOCKVOLLEY 			= "You got the Nock Volley Gun!";

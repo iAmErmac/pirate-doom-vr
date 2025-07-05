@@ -1,0 +1,77 @@
+
+class PDVR_Flintlock : DoomWeaponZ
+{
+ 	Default
+	{
+		Weapon.SelectionOrder 1900;
+		Weapon.AmmoUse 1;
+		Weapon.AmmoGive 20;
+		Weapon.AmmoType "Clip";
+		weapon.Slotnumber 2;
+		Obituary "$OB_MPPISTOL";
+		+WEAPON.WIMPY_WEAPON
+		Inventory.Pickupmessage "$PICKUP_FLINTLOCK";
+		Tag "$TAG_FLINTLOCK";
+		+WEAPON.WIMPY_WEAPON
+		+WEAPON.MELEEWEAPON
+		+WEAPON.NOALERT
+	}
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_Lower (160);
+		Loop;
+	Select:
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_Raise (160);
+		Loop;
+	Fire:
+		PISG B 0 A_SetWeaponModel("PSNH");
+		#### B 1;
+		#### # 0 A_StartSound("pistola/shot", CHAN_WEAPON);
+		#### # 0 A_GunFlash;
+		#### C 1 A_FireBullets(5.6,0,1,10,"NewPuff");
+		#### # 0 A_FireProjectile("PistolSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### DEF 1;
+		#### G 2;
+		#### H 2;
+		#### I 5;
+		#### A 5 A_ReFire;
+		Goto Ready;
+	Flash:
+		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 5);
+		TNT1 A 0 A_OverlayFlags(OverlayID(), PSPF_RENDERSTYLE | PSPF_FORCEALPHA, true);
+		TNT1 A 0 A_OverlayRenderstyle(OverlayID(), STYLE_Add);
+		TNT1 A 0 A_OverlayAlpha(OverlayID(), invoker.weaponFlashAlpha);
+		TNT1 A 0 A_Jump(256, "Flash1", "Flash2", "Flash3", "Flash4", "Flash5");
+		TNT1 A 0;
+		stop;
+	Flash1:
+		PISF A 2 Bright A_Light1;
+		Goto LightDone;
+	Flash2:
+		PISF B 2 Bright A_Light1;
+		Goto LightDone;
+	Flash3:
+		PISF C 2 Bright A_Light1;
+		Goto LightDone;
+	Flash4:
+		PISF D 2 Bright A_Light1;
+		Goto LightDone;
+	Flash5:
+		PISF E 2 Bright A_Light1;
+		Goto LightDone;
+ 	Spawn:
+		PIST A -1;
+		Stop;
+	Placeholder:
+		PSNH A 0;
+		Stop;
+	}
+}

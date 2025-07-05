@@ -1,0 +1,13 @@
+version "3.0"
+
+#include "zscript/weapons/weaponsbase.txt"
+#include "zscript/weapons/pistol.txt"
+#include "zscript/weapons/sword.txt"
+#include "zscript/weapons/blunderbuss.txt"
+#include "zscript/weapons/nock.txt"
+
+#include "zscript/actors/player.txt"
+#include "zscript/actors/smokes.txt"
+
+#include "zscript/pdvr_common.txt"
+#include "zscript/pdvr_replacements.txt"
