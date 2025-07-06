@@ -3,3 +3,8 @@
 #include "modeldefs/sword.txt"
 #include "modeldefs/blunderbuss.txt"
 #include "modeldefs/nock.txt"
+#include "modeldefs/repeater.txt"
+#include "modeldefs/cannon.txt"
+#include "modeldefs/swivelcannon.txt"
+#include "modeldefs/bomb.txt"
+#include "modeldefs/mortar.txt"

@@ -1,0 +1,119 @@
+
+class PDVR_Mortar : DoomWeaponZ
+{
+	Default
+	{
+		Weapon.SelectionOrder 8878;
+		Weapon.AmmoUse1 1;
+		Weapon.AmmoUse2 1;
+		Weapon.AmmoGive 8;
+		Weapon.AmmoType1 "RocketAmmo";
+		Weapon.AmmoType2 "RocketAmmo";
+		Inventory.PickupMessage "$GOTMORTAR";
+		Obituary "$OB_MPSSHOTGUN";
+		Tag "$TAG_MORTAR";
+	}
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		MRTR A 0 A_SetWeaponModel("MTNH");
+		#### A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+		MRTR A 0 A_SetWeaponModel("MTNH");
+		#### A 1 A_Lower (160);
+		Loop;
+	Select:
+		MRTR A 0 A_SetWeaponModel("MTNH");
+		#### A 1 A_Raise (160);
+		Loop;
+	Fire:
+		MRTR A 0 A_SetWeaponModel("MTNH");
+		#### BC 1;
+		#### # 0 A_StartSound("dlauncher/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("pygmy/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("dlauncher/tchum", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_quake(2,6,0,8,0);
+		#### # 0 A_Recoil(1);
+		#### # 0 A_GunFlash;
+		#### # 0 A_FireProjectile("MortarBomb",0,1,0,2,500);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_FireProjectile("ShotgunBarrelSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### DEFGH 1;
+		#### I 1 A_ReFire;
+		#### A 3;
+		Goto Ready;
+	AltFire:
+		MRTR A 0 A_SetWeaponModel("MTNH");
+		#### BC 1;
+		#### # 0 A_StartSound("dlauncher/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("pygmy/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("dlauncher/tchum", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_quake(2,6,0,8,0);
+		#### # 0 A_Recoil(1);
+		#### # 0 A_GunFlash;
+		#### # 0 A_FireProjectile("MortarBomb",-4,1,0,2,500);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_FireProjectile("ShotgunBarrelSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### DE 1;
+		#### # 0 A_StartSound("dlauncher/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("pygmy/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("dlauncher/tchum", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_Recoil(1);
+		#### # 0 A_FireProjectile("MortarBomb",0,1,0,2,500);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_FireProjectile("ShotgunBarrelSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### FG 1;
+		#### # 0 A_StartSound("dlauncher/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("pygmy/shot", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_StartSound("dlauncher/tchum", CHAN_WEAPON, CHANF_OVERLAP);
+		#### # 0 A_Recoil(1);
+		#### # 0 A_FireProjectile("MortarBomb",4,1,0,2,500);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### H 1 A_FireProjectile("ShotgunBarrelSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### I 1;
+		#### A 23;
+		#### A 1 A_ReFire;
+		#### A 3;
+		Goto Ready;
+	Flash:
+		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 5);
+		TNT1 A 0 A_OverlayFlags(OverlayID(), PSPF_RENDERSTYLE | PSPF_FORCEALPHA, true);
+		TNT1 A 0 A_OverlayRenderstyle(OverlayID(), STYLE_Add);
+		TNT1 A 0 A_OverlayAlpha(OverlayID(), invoker.weaponFlashAlpha);
+		TNT1 A 0 A_Jump(256, "Flash1", "Flash2", "Flash3", "Flash4", "Flash5");
+		TNT1 A 0;
+		stop;
+	Flash1:
+		MRTF A 2 Bright A_Light1;
+		Goto LightDone;
+	Flash2:
+		MRTF B 2 Bright A_Light1;
+		Goto LightDone;
+	Flash3:
+		MRTF C 2 Bright A_Light1;
+		Goto LightDone;
+	Flash4:
+		MRTF D 2 Bright A_Light1;
+		Goto LightDone;
+	Flash5:
+		MRTF E 2 Bright A_Light1;
+		Goto LightDone;
+	Spawn:
+		SGN2 A -1;
+		Stop;
+	Placeholder:
+		MTNH A 0;
+		Stop;
+	}
+}
+
+class MortarBomb : Bomb
+{
+	Default
+	{
+	speed 35;
+	}
+}

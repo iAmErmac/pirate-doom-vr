@@ -1,0 +1,13 @@
+
+$random pipe/smoke/sizzle 		{ sizzle1 sizzle2 sizzle3 sizzle4 }
+sizzle1 				sizzle1
+sizzle2 				sizzle2
+sizzle3 				sizzle3
+sizzle4 				sizzle4
+$volume pipe/smoke/sizzle 0.6
+
+$random pipe/smoke/puff 		{ smoking1 smoking2 smoking3 smoking4 }
+smoking1 				smoking1
+smoking2 				smoking2
+smoking3 				smoking3
+smoking4 				smoking4

@@ -1,0 +1,66 @@
+
+Model PDVR_Repeater
+{
+	Path "models/repeater"
+	Model 0 "repeater.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex GATL A 0 0 	FrameIndex GATL A 1 46
+	
+	//Fire
+	FrameIndex GATL B 0 1 	FrameIndex GATL B 1 47
+	FrameIndex GATL C 0 2	FrameIndex GATL C 1 48
+}
+
+//without hand
+Model PDVR_Repeater
+{
+	Path "models/repeater"
+	Model 0 "repeater.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex GTNH A 0 0 	FrameIndex GTNH A 1 46
+	
+	//Fire
+	FrameIndex GTNH B 0 1 	FrameIndex GTNH B 1 47
+	FrameIndex GTNH C 0 2	FrameIndex GTNH C 1 48
+}
+
+//muzzle flash
+Model PDVR_Repeater
+{
+	Path "models/repeater"
+	Model 0 "repeater_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex GATF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex GATF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex GATF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex GATF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex GATF E 0 0
+}

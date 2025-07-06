@@ -5,10 +5,10 @@ addplayerclass PDVR_Captain
 setslot 1 PDVR_Cutlass PDVR_OffhandCutlass
 setslot 2 PDVR_Flintlock
 setslot 3 PDVR_Blunderbuss PDVR_NockGun
-setslot 4 gatlingun
-setslot 5 Cannon
-setslot 6 Minicannon
-setslot 7 Dynamite DynamiteLauncher
+setslot 4 PDVR_Repeater
+setslot 5 PDVR_Cannon
+setslot 6 PDVR_SwivelCannon
+setslot 7 PDVR_Bomb PDVR_Mortar
 setslot 8 
 setslot 9
 setslot 0

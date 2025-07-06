@@ -1,0 +1,78 @@
+
+Model PDVR_Mortar
+{
+	Path "models/mortar"
+	Model 0 "mortar.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex MRTR A 0 0 	FrameIndex MRTR A 1 28
+	
+	//Fire
+	FrameIndex MRTR B 0 1 	FrameIndex MRTR B 1 29
+	FrameIndex MRTR C 0 2 	FrameIndex MRTR C 1 30
+	FrameIndex MRTR D 0 3 	FrameIndex MRTR D 1 31
+	FrameIndex MRTR E 0 4 	FrameIndex MRTR E 1 32
+	FrameIndex MRTR F 0 5 	FrameIndex MRTR F 1 33
+	FrameIndex MRTR G 0 6 	FrameIndex MRTR G 1 34
+	FrameIndex MRTR H 0 7 	FrameIndex MRTR H 1 35
+	FrameIndex MRTR I 0 8 	FrameIndex MRTR I 1 36
+}
+
+//without hand
+Model PDVR_Mortar
+{
+	Path "models/mortar"
+	Model 0 "mortar.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex MTNH A 0 0
+	
+	//Fire
+	FrameIndex MTNH B 0 1
+	FrameIndex MTNH C 0 2
+	FrameIndex MTNH D 0 3
+	FrameIndex MTNH E 0 4
+	FrameIndex MTNH F 0 5
+	FrameIndex MTNH G 0 6
+	FrameIndex MTNH H 0 7
+	FrameIndex MTNH I 0 8
+}
+
+//muzzle flash
+Model PDVR_Mortar
+{
+	Path "models/nock"
+	Model 0 "mortar_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex MRTF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex MRTF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex MRTF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex MRTF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex MRTF E 0 0
+}

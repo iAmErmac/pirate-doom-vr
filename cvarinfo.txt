@@ -4,4 +4,5 @@ server int pdvr_weapon_pickup 	= 0;
 server bool pdvr_muzzle_flash 	= true;
 server float pdvr_flash_alpha 	= 0.4;
 server bool pdvr_weapon_smoke 	= true;
-server int pdvr_offhand_equip 	= 0;
+server int pdvr_offhand_equip 	= 1;
+server int pdvr_bomb_ignite 	= 0;

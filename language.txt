@@ -9,6 +9,7 @@ PDVR_WEAPON_PICKUP 		= "Pickup Model";
 PDVR_WEAPON_FLASH 		= "Muzzle Flash"; 
 PDVR_FLASH_ALPHA 		= "Flash Opacity"; 
 PDVR_WEAPON_SMOKE 		= "Gun Barrel Smoke"; 
+PDVR_BOMB_IGNITEMODE 		= "Bomb Ignite With";
 PDVR_OFFHAND_SWORD 		= "Off-hand Equip";
 
 PDVR_WITH_HAND 			= "With Hand";
@@ -21,6 +22,9 @@ PDVR_OFFHAND_CUTLASS		= "Cutlass";
 PDVR_OFFHAND_PIPE		= "Smoking Pipe";
 PDVR_OFFHAND_NONE		= "None";
 
+PDVR_BOMB_PIPE_IGNITE		= "Smoking Pipe";
+PDVR_BOMB_FIRE_IGNITE		= "Fire Key";
+
 TAG_FLINTLOCK 			= "Flintlock Pistol";
 PICKUP_FLINTLOCK 		= "Picked up Flintlock Pistol";
 TAG_CUTLASS 			= "Cutlass";
@@ -28,3 +32,13 @@ TAG_BLUNDERBUSS 		= "Blunderbuss";
 GOTBLUNDERBUSS 			= "You got the Blunderbuss!";
 TAG_NOCKVOLLEY 			= "Nock Volley Gun";
 GOTNOCKVOLLEY 			= "You got the Nock Volley Gun!";
+TAG_REPEATER 			= "Heavy Flintlock Repeater";
+GOTREPEATER 			= "You got the Heavy Flintlock Repeater!";
+TAG_CANNON 			= "Cannon";
+GOTCANNON 			= "A Cannon! Press alt fire to shoot a copper ball.";
+TAG_MINICANNON 			= "Mini Cannon";
+GOTMINICANNON 			= "Mini cannon! Press alt fire for multiball.";
+TAG_BOMB 			= "Bomb";
+GOTBOMB 			= "You got a Bomb! Use alt fire to throw it farther.";
+TAG_MORTAR 			= "Hand Mortar";
+GOTMORTAR 			= "Hand Mortar! Use alt fire for triple shot.";

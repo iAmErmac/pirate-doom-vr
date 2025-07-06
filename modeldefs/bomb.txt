@@ -1,0 +1,49 @@
+
+Model PDVR_Bomb
+{
+	Path "models/bomb"
+	Model 0 "bomb.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex BOMB A 0 0 	FrameIndex BOMB A 1 50
+	
+	//Fire
+	FrameIndex BOMB B 0 1 	FrameIndex BOMB B 1 51
+}
+
+//without hand
+Model PDVR_Bomb
+{
+	Path "models/bomb"
+	Model 0 "bomb.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex BMNH A 0 0
+	
+	//Fire
+	FrameIndex BMNH B 0 1
+}
+
+Model PDVR_Bomb
+{
+	Path "models/bomb"
+	Model 0 "bomb_spark.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	Skin 0 "spark1.png"
+	FrameIndex SPRK A 0 0
+	
+	Skin 0 "spark2.png"
+	FrameIndex SPRK B 0 0
+}

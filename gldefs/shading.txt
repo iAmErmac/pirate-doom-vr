@@ -23,3 +23,28 @@ material texture "models/nock/nock.png"
 {
 	shader "shaders/SimSun.fp"
 }
+
+material texture "models/repeater/repeater.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/cannon/cannon.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/s_cannon/s_cannon.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/bomb/bomb.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/mortar/mortar.png"
+{
+	shader "shaders/SimSun.fp"
+}

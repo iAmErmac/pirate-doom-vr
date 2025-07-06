@@ -7,6 +7,7 @@ class DoomWeaponZ : DoomWeapon
 	protected double weaponFlashAlpha;
 	protected bool weaponSmoke;
 	protected int offhandEquip;
+	protected int bombIgniteMode;
 	
 	override void BeginPlay()
 	{
@@ -26,6 +27,7 @@ class DoomWeaponZ : DoomWeapon
 		weaponFlashAlpha = CVar.GetCVar("pdvr_flash_alpha").GetFloat();
 		weaponSmoke = CVar.GetCVar("pdvr_weapon_smoke").GetBool();
 		offhandEquip = CVar.GetCVar("pdvr_offhand_equip").GetInt();
+		bombIgniteMode = CVar.GetCVar("pdvr_bomb_ignite").GetInt();
 	}
 
 	action void A_SetWeaponModel(String AltModel)

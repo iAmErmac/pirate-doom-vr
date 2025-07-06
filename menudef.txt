@@ -91,6 +91,11 @@ OptionValue "PDVR_Offhand_Options" {
 	2, "$PDVR_OFFHAND_NONE"
 }
 
+OptionValue "PDVR_Bomb_Options" {
+	0, "$PDVR_BOMB_PIPE_IGNITE"
+	1, "$PDVR_BOMB_FIRE_IGNITE"
+}
+
 OptionMenu "PDVROptions"
 {
 	Title "$PDVR_OPTIONS"
@@ -101,5 +106,6 @@ OptionMenu "PDVROptions"
 	Option "$PDVR_WEAPON_FLASH", 		"pdvr_muzzle_flash", 		"OnOff"
 	Slider "$PDVR_FLASH_ALPHA", 		"pdvr_flash_alpha", 		0.1, 1.0, 0.1, 1, pdvr_muzzle_flash
 	Option "$PDVR_WEAPON_SMOKE", 		"pdvr_weapon_smoke", 		"OnOff"
+	Option "$PDVR_BOMB_IGNITEMODE", 	"pdvr_bomb_ignite", 		"PDVR_Bomb_Options"
 	Option "$PDVR_OFFHAND_SWORD", 		"pdvr_offhand_equip", 		"PDVR_Offhand_Options"
 }

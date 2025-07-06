@@ -1,0 +1,58 @@
+
+Model PDVR_SwivelCannon
+{
+	Path "models/s_cannon"
+	Model 0 "s_cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex MINI A 0 0 	FrameIndex MINI A 1 46
+}
+
+//without hand
+Model PDVR_SwivelCannon
+{
+	Path "models/s_cannon"
+	Model 0 "s_cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex MCNH A 0 0 	FrameIndex MCNH A 1 46
+}
+
+//muzzle flash
+Model PDVR_SwivelCannon
+{
+	Path "models/s_cannon"
+	Model 0 "s_cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}

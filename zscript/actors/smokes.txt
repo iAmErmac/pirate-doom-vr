@@ -28,6 +28,42 @@ class PDSmokeGeneral : Actor
 	}
 }
 
+class pipeSmoke : PDSmokeGeneral
+{
+	Default
+	{
+	alpha 0.2;
+	scale 0.01;
+	vspeed 0.01;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 ABCDEFGHIJKLMNOPQR 1 A_SpawnItemEx("HandgunSmokeTrail",random(-2,2),random(-2,2),random(-2,2),0,0,0,0);
+		stop;
+	}
+}
+
+class pipeSmokeTrail : pipeSmoke
+{
+	Default
+	{
+	alpha 0.1;
+	vspeed 0.005;
+	scale 0.005;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 DEFGHIJKLMNOPQR 1;
+		stop;
+	}
+}
+
 class HandgunSmoke : PDSmokeGeneral
 {
 	Default
@@ -141,6 +177,52 @@ class ShotgunBarrelSmoke: PistolSmoke
 	Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_SpawnItemEx("ShotgunSmoke",random(35,45),0,random(1,2),1.5,0,0.2,0);
+		Stop;
+	}
+}
+
+class CannonSmoke : HandgunSmoke
+{
+	Default
+	{
+	alpha 0.6;
+	scale 0.8;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 ABCDEFGHIJKLMNOPQR 2 A_SpawnItemEx("CannonSmokeTrail",random(-7,7),random(-7,7),random(-7,7),0,0,0,0);
+		stop;
+	}
+}
+
+class CannonSmokeTrail : ShotgunSmoke
+{
+	Default
+	{
+	alpha .3;
+	vspeed 0.5;
+	scale .3;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 DEFGHIJKLMNOPQR 2;
+		stop;
+	}
+}
+
+class CannonBarrelSmoke: PistolSmoke
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("CannonSmoke",random(40,60),0,random(2,4),1.5,0,0.2,0);
 		Stop;
 	}
 }

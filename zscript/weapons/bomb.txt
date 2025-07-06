@@ -1,0 +1,178 @@
+
+class PDVR_Bomb : DoomWeaponZ
+{
+	private bool ignited;
+	private bool fireKeyIgnite;
+
+	Default
+	{
+	Tag "$TAG_BOMB";
+	Weapon.SelectionOrder 8888;
+	Weapon.AmmoUse1 1;
+	Weapon.AmmoUse2 1;
+	Weapon.AmmoGive 6;
+	weapon.Slotnumber 7;
+	Weapon.AmmoType "dynamiteammo";
+	Weapon.AmmoType2 "dynamiteammo";
+	Obituary "%o was exploded by %k's dynamite.";
+	Inventory.Pickupmessage "$GOTBOMB";
+	+WEAPON.MELEEWEAPON
+	+WEAPON.NOALERT
+	+WEAPON.NOAUTOAIM
+	+WEAPON.EXPLOSIVE
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if(!owner || owner.health < 1) return;
+		
+		if(owner.player.readyweapon != self)
+		{
+			if(owner.countinv("PDVR_OffhandCutlass"))
+			{
+				PDVR_OffhandCutlass(owner.findinventory("PDVR_OffhandCutlass")).needPipe = false;
+			}
+			return;
+		}
+		
+		if(bombIgniteMode == 1) fireKeyIgnite = true;
+		if(!owner.countinv("PDVR_OffhandCutlass")) fireKeyIgnite = true;
+		
+		if(!fireKeyIgnite)
+		{
+			if(!(owner.player.offhandweapon is "PDVR_OffhandCutlass"))
+			{
+				owner.player.PendingWeapon = Weapon(owner.findinventory("PDVR_OffhandCutlass"));
+			}
+			PDVR_OffhandCutlass(owner.findinventory("PDVR_OffhandCutlass")).needPipe = true;
+			
+			checkPipeIgnite();
+		}
+	}
+	
+	void checkPipeIgnite()
+	{
+		let pmo = owner.player.mo;
+		int hand = bOffhandWeapon;
+		double angle = pmo.angle;
+		double pitch = pmo.AimTarget() ? pmo.BulletSlope(null, ALF_PORTALRESTRICT) : pmo.pitch;
+		int laflags = LAF_NOIMPACTDECAL | LAF_NOINTERACT | LAF_NORANDOMPUFFZ;
+		if(hand) laflags |= LAF_ISOFFHAND;
+		let _puff = pmo.LineAttack(angle+110, 3, pitch+30, 0, "melee", "PDVR_DUmmyPuff1", laflags);
+		vector3 fusePos = _puff.pos;
+		vector3 pipePos = hand ? owner.AttackPos : owner.OffhandPos;
+		
+		if(Level.vec3diff(fusePos, pipePos).length() < 1.5 && !ignited)
+		{
+			ignited = true;
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		DYNS A -1;
+		Loop;
+	Ready:
+		TNT1 A 0;
+		BOMB A 0 A_SetWeaponModel("BMNH");
+		#### A 0 A_JumpIf(invoker.ignited, "ReadyIgnited");
+		#### A 1 A_WeaponReady;
+		Loop;
+	ReadyIgnited:
+		#### # 0 A_StartSound("fuse/fuse", CHAN_WEAPON);
+		#### AAAA 4
+		{
+			A_GunFlash();
+			A_WeaponReady();
+		}
+		Loop;
+	Deselect:
+		BOMB A 0 A_SetWeaponModel("BMNH");
+		#### A 1 A_Lower (160);
+		Loop;
+	Select:
+		BOMB A 0 A_SetWeaponModel("BMNH");
+		#### A 1 A_Raise (160);
+		Loop;
+	Fire:
+		BOMB A 0 A_SetWeaponModel("BMNH");
+		#### # 0 A_JumpIf(invoker.ignited == false, "Ignite");
+		#### # 0 A_StartSound("espada/swing", CHAN_WEAPON);
+		#### B 1 A_FireProjectile("Bomb",fRandom(-1,1),1,0,0,500);
+		#### # 0 { invoker.ignited = false; }
+		#### # 0 A_JumpIfInventory("PowerStrength",1,"Fastfinish");
+		#### B 34;
+		Goto Ready;
+	Fastfinish:
+		#### B 24;
+		Goto Ready;
+	AltFire:
+		BOMB A 0 A_SetWeaponModel("BMNH");
+		#### # 0 A_JumpIf(invoker.ignited == false, "Ignite");
+		#### # 0 A_StartSound("espada/swing", CHAN_WEAPON);
+		#### B 1 A_FireProjectile("Bomb2",fRandom(-1,1),1,0,0,500);
+		#### # 0 { invoker.ignited = false; }
+		#### # 0 A_JumpIfInventory("PowerStrength",1,"Fastfinish");
+		#### B 34;
+		Goto Ready;
+	Ignite:
+		#### # 0 A_JumpIf(invoker.fireKeyIgnite == false, "Ready");
+		#### # 0 { invoker.ignited = true; }
+		#### # 0 A_StartSound("fuse/fuse", CHAN_WEAPON);
+		#### AAAA 4 A_Gunflash;
+		Goto ReadyIgnited;
+	Flash:
+		SPRK AB 2 Bright;
+		Stop;
+	Placeholder:
+		BMNH A 0;
+		Stop;
+	}
+}
+
+class Bomb : Actor
+{
+	Default
+	{
+		speed 20;
+		radius 8;
+		mass 3000;
+		health 40;
+		BounceType "Classic";
+		wallbouncefactor 0.001;
+		BounceCount 0;
+		Obituary "%o exploded.";
+		scale 0.2;
+		+NOBLOCKMONST
+		+NOBLOCKMAP
+		-ALLOWBOUNCEONACTORS	
+		-BOUNCEONWALLS
+	}
+	
+	States
+	{
+	Spawn:
+		BFS1 A 0 A_StartSound("fuse/fuse");
+		BFS1 A 1;
+		BFS1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS",1);
+		BFS1 BABA 1 A_StartSound("fuse/fuse");
+		BFS1 BABABABAB 1;
+		BFS1 ABABAB 2 A_spawnitemex ("sparks2", 0, -14, 0, frandom (-1, 1), frandom (-1, -3), frandom (0, 2));
+		BFS1 A 1 A_Spawnitemex("explosao",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS);
+		BFS1 A 1 A_Spawnitemex("explosaomissile",0,0,-46,0,0,0,0, SXF_TRANSFERPOINTERS);
+		BFS1 A 0 A_Alertmonsters;
+		Stop;
+
+	}
+}
+
+class Bomb2 : Bomb
+{
+	Default
+	{
+		speed 35;
+	}
+}
