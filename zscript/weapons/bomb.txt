@@ -12,9 +12,9 @@ class PDVR_Bomb : DoomWeaponZ
 	Weapon.AmmoUse2 1;
 	Weapon.AmmoGive 6;
 	weapon.Slotnumber 7;
-	Weapon.AmmoType "dynamiteammo";
-	Weapon.AmmoType2 "dynamiteammo";
-	Obituary "%o was exploded by %k's dynamite.";
+	Weapon.AmmoType "PBombammo";
+	Weapon.AmmoType2 "PBombammo";
+	Obituary "%o was exploded by %k's bomb.";
 	Inventory.Pickupmessage "$GOTBOMB";
 	+WEAPON.MELEEWEAPON
 	+WEAPON.NOALERT
@@ -73,7 +73,7 @@ class PDVR_Bomb : DoomWeaponZ
 	States
 	{
 	Spawn:
-		DYNS A -1;
+		PBMB A -1;
 		Loop;
 	Ready:
 		TNT1 A 0;

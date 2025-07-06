@@ -7,8 +7,8 @@ class PDVR_SwivelCannon : DoomWeaponZ
 		Weapon.AmmoUse1 1;
 		Weapon.AmmoUse2 1;
 		Weapon.AmmoGive 2;
-		Weapon.AmmoType1 "RocketAmmo";
-		Weapon.AmmoType2 "RocketAmmo";
+		Weapon.AmmoType1 "PBallammo";
+		Weapon.AmmoType2 "PBallammo";
 		+WEAPON.NOAUTOFIRE
 		Inventory.PickupMessage "$GOTMINICANNON";
 		Tag "$TAG_MINICANNON";
@@ -112,7 +112,7 @@ class PDVR_SwivelCannon : DoomWeaponZ
 		CANF E 2 Bright A_Light2;
 		Goto LightDone;
 	Spawn:
-		LAUN A -1;
+		MCAN A -1;
 		Stop;
 	Placeholder:
 		MCNH A 0;

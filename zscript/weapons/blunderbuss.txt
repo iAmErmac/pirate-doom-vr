@@ -10,6 +10,7 @@ class PDVR_Blunderbuss : DoomWeaponZ
 		Inventory.PickupMessage "$GOTBLUNDERBUSS";
 		Obituary "$OB_MPSHOTGUN";
 		Tag "$TAG_BLUNDERBUSS";
+		scale 0.8;
 	}
 	States
 	{
@@ -66,7 +67,7 @@ class PDVR_Blunderbuss : DoomWeaponZ
 		SHTF E 2 Bright A_Light1;
 		Goto LightDone;
 	Spawn:
-		SHOT A -1;
+		BLUN A -1;
 		Stop;
 	Placeholder:
 		SGNH A 0;

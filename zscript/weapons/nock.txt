@@ -11,6 +11,7 @@ class PDVR_NockGun : DoomWeaponZ
 		Inventory.PickupMessage "$GOTNOCKVOLLEY";
 		Obituary "$OB_MPSSHOTGUN";
 		Tag "$TAG_NOCKVOLLEY";
+		scale 0.7;
 	}
 	States
 	{
@@ -67,7 +68,7 @@ class PDVR_NockGun : DoomWeaponZ
 		SHTF E 2 Bright A_Light1;
 		Goto LightDone;
 	Spawn:
-		SGN2 A -1;
+		NOCK A -1;
 		Stop;
 	Placeholder:
 		S2NH A 0;

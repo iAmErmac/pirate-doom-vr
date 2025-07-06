@@ -13,9 +13,9 @@ class PDVR_Captain : DoomPlayer
 	Player.StartItem "PDVR_Flintlock";
 	Player.StartItem "PDVR_Cutlass";
 	Player.StartItem "PDVR_OffhandCutlass";
-	Player.StartItem "Clip", 50;
+	Player.StartItem "PBullets", 50;
 	Player.WeaponSlot 1, "PDVR_Cutlass", "PDVR_OffhandCutlass";
-	Player.WeaponSlot 2, "PDVR_Flintlock";
+	Player.WeaponSlot 2, "PDVR_Flintlock", "PDVR_OffhandFlintlock";
 	Player.WeaponSlot 3, "PDVR_Blunderbuss", "PDVR_NockGun";
 	Player.WeaponSlot 4, "PDVR_Repeater";
 	Player.WeaponSlot 5, "PDVR_Cannon";

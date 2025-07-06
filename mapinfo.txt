@@ -1,2 +1,3 @@
 
 include "config/gameinfo.txt"
+include "config/ednums.txt"

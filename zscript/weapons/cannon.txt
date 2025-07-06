@@ -7,11 +7,12 @@ class PDVR_Cannon : DoomWeaponZ
 		Weapon.AmmoUse1 1;
 		Weapon.AmmoUse2 1;
 		Weapon.AmmoGive 2;
-		Weapon.AmmoType1 "RocketAmmo";
-		Weapon.AmmoType2 "RocketAmmo";
+		Weapon.AmmoType1 "PBallammo";
+		Weapon.AmmoType2 "PBallammo";
 		+WEAPON.NOAUTOFIRE
 		Inventory.PickupMessage "$GOTCANNON";
 		Tag "$TAG_CANNON";
+		Obituary "%o was blown up by %k's cannon.";
 	}
 	
 	States

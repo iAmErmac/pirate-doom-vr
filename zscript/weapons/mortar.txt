@@ -7,11 +7,12 @@ class PDVR_Mortar : DoomWeaponZ
 		Weapon.AmmoUse1 1;
 		Weapon.AmmoUse2 1;
 		Weapon.AmmoGive 8;
-		Weapon.AmmoType1 "RocketAmmo";
-		Weapon.AmmoType2 "RocketAmmo";
+		Weapon.AmmoType1 "PBombammo";
+		Weapon.AmmoType2 "PBombammo";
 		Inventory.PickupMessage "$GOTMORTAR";
-		Obituary "$OB_MPSSHOTGUN";
+		Obituary "%o was blown up by %k's mortar.";
 		Tag "$TAG_MORTAR";
+		scale 0.9;
 	}
 	States
 	{
@@ -102,7 +103,7 @@ class PDVR_Mortar : DoomWeaponZ
 		MRTF E 2 Bright A_Light1;
 		Goto LightDone;
 	Spawn:
-		SGN2 A -1;
+		PMRT A -1;
 		Stop;
 	Placeholder:
 		MTNH A 0;

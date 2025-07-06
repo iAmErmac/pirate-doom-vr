@@ -6,7 +6,7 @@ class PDVR_Flintlock : DoomWeaponZ
 		Weapon.SelectionOrder 1900;
 		Weapon.AmmoUse 1;
 		Weapon.AmmoGive 20;
-		Weapon.AmmoType "Clip";
+		Weapon.AmmoType "PBullets";
 		weapon.Slotnumber 2;
 		Obituary "$OB_MPPISTOL";
 		+WEAPON.WIMPY_WEAPON
@@ -15,7 +15,21 @@ class PDVR_Flintlock : DoomWeaponZ
 		+WEAPON.WIMPY_WEAPON
 		+WEAPON.MELEEWEAPON
 		+WEAPON.NOALERT
+		scale 0.8;
 	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if(!owner || owner.health < 1 || owner.player.readyweapon != self) return;
+		
+		if(owner.countinv("PDVR_DualPistol"))
+		{
+			owner.setinventory("PDVR_OffhandFlintlock", 1);
+		}
+	}
+	
 	States
 	{
 	Ready:
@@ -73,6 +87,85 @@ class PDVR_Flintlock : DoomWeaponZ
 		Stop;
 	Placeholder:
 		PSNH A 0;
+		Stop;
+	}
+}
+
+class PDVR_OffhandFlintlock : PDVR_Flintlock
+{
+	default
+	{
+	+WEAPON.OFFHANDWEAPON;
+	+WEAPON.NOHANDSWITCH;
+	+WEAPON.POWERED_UP;
+	+WEAPON.NOAUTOSWITCHTO;
+	+WEAPON.CHEATNOTWEAPON;
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		
+		if(!owner || owner.health < 1) return;
+		
+		let pistol = Weapon(owner.findinventory("PDVR_Flintlock"));
+		if(owner.player.readyweapon != pistol)
+		{
+			destroy();
+			return;
+		}
+		else if(owner.player.offhandweapon != self)
+		{
+			owner.player.offhandweapon = self;
+			owner.player.pendingweapon = self;
+			owner.player.bringupweapon();
+		}
+	}
+	
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_Lower (160);
+		Loop;
+	Select:
+		PISG A 0 A_SetWeaponModel("PSNH");
+		#### A 1 A_Raise (160);
+		Loop;
+	Fire:
+		PISG B 0 A_SetWeaponModel("PSNH");
+		#### B 1;
+		#### # 0 A_StartSound("pistola/shot", CHAN_WEAPON);
+		#### # 0 A_GunFlash;
+		#### C 1 A_FireBullets(5.6,0,1,10,"NewPuff");
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_FireProjectile("PistolSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
+		#### DEF 1;
+		#### G 2;
+		#### H 2;
+		#### I 5;
+		#### A 5 A_ReFire;
+		Goto Ready;
+	}
+}
+
+class PDVR_DualPistol : Inventory
+{
+	default
+	{
+	Inventory.maxamount 1;
+	scale 0.5;
+	}
+	
+	States
+	{
+	Spawn:
+		DPIS A -1;
 		Stop;
 	}
 }

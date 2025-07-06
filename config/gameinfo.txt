@@ -2,4 +2,6 @@
 Gameinfo
 {
 	PlayerClasses = "PDVR_Captain"
+
+	AddEventHandlers = "PDVRReplacementHandler"
 }

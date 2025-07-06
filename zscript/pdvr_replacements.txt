@@ -1,0 +1,49 @@
+
+class PDVRReplacementHandler : EventHandler
+{
+	override void CheckReplacement(ReplaceEvent e)
+	{
+		if(GameInfo.GameType & GAME_Doom)
+		{
+			//weapon
+			if(e.Replacee is "Pistol") 				e.Replacement = 'PDVR_Flintlock';
+			if(e.Replacee is "Chainsaw") 				e.Replacement = 'PDVR_Bomb';
+			if(e.Replacee is "Shotgun") 				e.Replacement = 'PDVR_Blunderbuss';
+			if(e.Replacee is "SuperShotgun") 			e.Replacement = 'PDVR_NockGun';
+			if(e.Replacee is "Chaingun") 				e.Replacement = 'PDVR_DualPistol';
+			if(e.Replacee is "RocketLauncher") 			e.Replacement = 'PDVR_Cannon';
+			if(e.Replacee is "PlasmaRifle") 			e.Replacement = 'PDVR_SwivelCannon';
+			if(e.Replacee is "BFG9000") 				e.Replacement = 'PDVR_Mortar';
+			
+			//ammo
+			if(e.Replacee is "Clip") 				e.Replacement = 'PBullets';
+			if(e.Replacee is "ClipBox") 				e.Replacement = 'PBulletBox';
+			if(e.Replacee is "Shell") 				e.Replacement = 'PPellet';
+			if(e.Replacee is "ShellBox") 				e.Replacement = 'PPelletBox';
+			if(e.Replacee is "RocketAmmo") 				e.Replacement = 'PBallsammo';
+			if(e.Replacee is "RocketBox") 				e.Replacement = 'PBombammo';
+			if(e.Replacee is "Cell") 				e.Replacement = 'PExplosivePile';
+			if(e.Replacee is "CellPack") 				e.Replacement = 'PBigExplosivePile';
+		}
+	}
+	
+	override void WorldThingSpawned(WorldEvent e)
+	{
+		playerinfo player = Players[ConsolePlayer];
+		let pmo = player.mo;
+		let spawnedThing = e.Thing;
+		
+		if(spawnedThing && spawnedThing is "Ammo")
+		{
+			string bulletClass2 = "Bullets2";
+			class<Ammo> bullet2 = bulletClass2;
+			
+			if(spawnedThing is bullet2)
+			{
+				Actor.Spawn("PBullets2", spawnedThing.pos);
+				spawnedThing.destroy();
+				return;
+			}
+		}
+	}
+}

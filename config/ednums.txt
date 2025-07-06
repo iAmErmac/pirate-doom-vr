@@ -1,0 +1,9 @@
+DoomEdNums
+{
+	5014 	= PDVR_Repeater
+	25005 	= PDVR_DualPistol
+	25028 	= PBombammo
+	25029 	= PBombPile
+	25030 	= PDVR_Bomb
+	25031 	= PDVR_Mortar
+}

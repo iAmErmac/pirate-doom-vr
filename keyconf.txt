@@ -3,7 +3,7 @@ clearplayerclasses
 addplayerclass PDVR_Captain
 
 setslot 1 PDVR_Cutlass PDVR_OffhandCutlass
-setslot 2 PDVR_Flintlock
+setslot 2 PDVR_Flintlock PDVR_OffhandFlintlock
 setslot 3 PDVR_Blunderbuss PDVR_NockGun
 setslot 4 PDVR_Repeater
 setslot 5 PDVR_Cannon

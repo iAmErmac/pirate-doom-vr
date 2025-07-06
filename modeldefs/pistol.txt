@@ -80,3 +80,85 @@ Model PDVR_Flintlock
 	SurfaceSkin 0 1 "flash9.png"
 	FrameIndex PISF E 0 0
 }
+
+Model PDVR_OffhandFlintlock
+{
+	Path "models/pistol"
+	Model 0 "flintlock.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Fire
+	FrameIndex PISG B 0 1 	FrameIndex PISG B 1 20
+	FrameIndex PISG C 0 2 	FrameIndex PISG C 1 21
+	FrameIndex PISG D 0 3 	FrameIndex PISG D 1 22
+	FrameIndex PISG E 0 4 	FrameIndex PISG E 1 23
+	FrameIndex PISG F 0 5 	FrameIndex PISG F 1 24
+	FrameIndex PISG G 0 6 	FrameIndex PISG G 1 25
+	FrameIndex PISG H 0 7 	FrameIndex PISG H 1 26
+	FrameIndex PISG I 0 8 	FrameIndex PISG I 1 27
+	
+	NOINTERPOLATION
+	
+	//Ready
+	FrameIndex PISG A 0 0 	FrameIndex PISG A 1 19
+}
+
+//without hand
+Model PDVR_OffhandFlintlock
+{
+	Path "models/pistol"
+	Model 0 "flintlock.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Fire
+	FrameIndex PSNH B 0 1
+	FrameIndex PSNH C 0 2
+	FrameIndex PSNH D 0 3
+	FrameIndex PSNH E 0 4
+	FrameIndex PSNH F 0 5
+	FrameIndex PSNH G 0 6
+	FrameIndex PSNH H 0 7
+	FrameIndex PSNH I 0 8
+	
+	NOINTERPOLATION
+	
+	//Ready
+	FrameIndex PSNH A 0 0
+}
+
+//muzzle flash
+Model PDVR_OffhandFlintlock
+{
+	Path "models/pistol"
+	Model 0 "pistol_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex PISF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex PISF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex PISF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex PISF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex PISF E 0 0
+}

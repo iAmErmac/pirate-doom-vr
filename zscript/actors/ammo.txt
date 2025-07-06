@@ -1,0 +1,143 @@
+
+class PBullets : Ammo replaces clip
+{
+	default
+	{
+		Inventory.PickupMessage "$GOTBULLETS";
+		Inventory.Icon "CLIPA0";
+		scale 0.5;
+		Inventory.Amount 10;
+		Inventory.MaxAmount 200;
+		Ammo.BackpackAmount 10;
+		Ammo.BackpackMaxAmount 400;
+	}
+	
+	States
+	{
+	Spawn:
+		CLIP A -1;
+		Stop;
+	}
+}
+
+class PBullets2 : PBullets
+{
+	default
+	{
+		Inventory.Amount 20;
+	}
+}
+
+class PBulletBox : PBullets replaces Clipbox
+{
+	default
+	{
+		Inventory.PickupMessage "$GOTBULLETBOX";
+		Inventory.Amount 50;
+		Scale 1;
+	}
+	
+	States
+	{
+	Spawn:
+		AMMO A -1;
+		Stop;
+	}
+}
+
+class PPellet : Shell {}
+
+class PPelletBox : ShellBox {}
+
+class PBallammo : ammo replaces rocketammo
+{
+	default
+	{
+		Tag "Cannonball";
+		Inventory.PickupMessage "$GOTCANNONBALL";
+		Inventory.Amount 6;
+		Inventory.MaxAmount 300;
+		Ammo.BackpackAmount 20;
+		Ammo.BackpackMaxAmount 600;
+		Inventory.Icon "ROCKA0";
+	}
+	
+	States
+	{
+	Spawn:
+		ROCK A -1;
+		Stop;
+	}
+}
+
+class PBallsammo : PBallammo replaces rocketbox
+{
+	default
+	{
+		Inventory.Amount 30;
+		Inventory.PickupMessage "$GOTCANNONBALLS";
+	}
+	
+	States
+	{
+	Spawn:
+		BROK A -1;
+		Stop;
+	}
+}
+
+class PBombammo : ammo
+{
+	default
+	{
+		Inventory.PickupMessage "Picked up some bombs.";
+		Inventory.Amount 6;
+		Inventory.MaxAmount 50;
+		Ammo.BackpackAmount 10;
+		Ammo.BackpackMaxAmount 100;
+		Inventory.Icon "BBOXA0";
+		scale 0.6;
+	}
+	
+	States
+	{
+	Spawn:
+		BBOX A -1;
+		Stop;
+	}
+}
+
+class PBombPile : PBombammo
+{
+	default
+	{
+		Inventory.PickupMessage "$GOTBOMBPILE";
+		Inventory.Amount 12;
+		scale 1;
+		scale 0.8;
+	}
+	
+	states
+	{
+	Spawn:
+		BBX2 A -1;
+		Stop;
+	}
+}
+
+class PExplosivePile : RandomSpawner replaces Cell
+{
+	default
+	{
+		dropItem "PBombammo";
+	}
+}
+
+class PBigExplosivePile : RandomSpawner replaces Cellpack
+{
+	default
+	{
+		dropItem "PBallsammo";
+		dropItem "PBombPile";
+	}
+}
