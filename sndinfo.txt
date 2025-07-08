@@ -12,4 +12,42 @@ smoking2 				smoking2
 smoking3 				smoking3
 smoking4 				smoking4
 
+
+pistola/shot 				dspssh
+
+espada/swing 				dsswsw
+
+shotgun/shot 				dssgsh
+
+dshotgun/shot 				dss2sh
+
 repeater/fire 				dsgatl
+
+fuse/fuse 				dsfuse
+
+cannon/shot 				dscano
+cannon/bounce   			dsbbounc
+
+minicannon/shot 			dsmini
+
+dlauncher/tchum 		 	dstchum
+dlauncher/shot  			dsminib
+
+pygmy/shot  				dspygsht
+
+// Richochets
+
+$random puff/ric      			{ puff/ric1 puff/ric2 puff/ric3 puff/ric4 puff/ric5 puff/ric6 puff/ric7 puff/ric8 puff/ric9 puff/ric10 puff/ric11 puff/ric12}
+
+puff/ric1 				dsrich1
+puff/ric2 				dsrich2
+puff/ric3 				dsrich3
+puff/ric4 				dsrich4
+puff/ric5 				dsrich5
+puff/ric6 				dsrich6
+puff/ric7 				dsrich7
+puff/ric8 				dsrich8
+puff/ric9				dsrich9
+puff/ric10				dsrich10
+puff/ric11				dsrich11
+puff/ric12				dsrich12

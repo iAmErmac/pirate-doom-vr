@@ -80,7 +80,8 @@ class PDVR_Mortar : DoomWeaponZ
 		#### A 3;
 		Goto Ready;
 	Flash:
-		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 5);
+		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 6);
+		TNT1 A 0 A_FireProjectile("ShotgunBigFlashSpawner",0,0,0,0,FPF_NOAUTOAIM,0);
 		TNT1 A 0 A_OverlayFlags(OverlayID(), PSPF_RENDERSTYLE | PSPF_FORCEALPHA, true);
 		TNT1 A 0 A_OverlayRenderstyle(OverlayID(), STYLE_Add);
 		TNT1 A 0 A_OverlayAlpha(OverlayID(), invoker.weaponFlashAlpha);

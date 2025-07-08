@@ -19,6 +19,8 @@ Model PDVR_Flintlock
 	FrameIndex PISG G 0 6 	FrameIndex PISG G 1 25
 	FrameIndex PISG H 0 7 	FrameIndex PISG H 1 26
 	FrameIndex PISG I 0 8 	FrameIndex PISG I 1 27
+	FrameIndex PISG J 0 9 	FrameIndex PISG J 1 27
+	FrameIndex PISG K 0 10 	FrameIndex PISG K 1 27
 	
 	NOINTERPOLATION
 	
@@ -44,6 +46,8 @@ Model PDVR_Flintlock
 	FrameIndex PSNH G 0 6
 	FrameIndex PSNH H 0 7
 	FrameIndex PSNH I 0 8
+	FrameIndex PSNH J 0 9
+	FrameIndex PSNH K 0 10
 	
 	NOINTERPOLATION
 	
@@ -101,6 +105,8 @@ Model PDVR_OffhandFlintlock
 	FrameIndex PISG G 0 6 	FrameIndex PISG G 1 25
 	FrameIndex PISG H 0 7 	FrameIndex PISG H 1 26
 	FrameIndex PISG I 0 8 	FrameIndex PISG I 1 27
+	FrameIndex PISG J 0 9 	FrameIndex PISG J 1 27
+	FrameIndex PISG K 0 10 	FrameIndex PISG K 1 27
 	
 	NOINTERPOLATION
 	
@@ -126,6 +132,8 @@ Model PDVR_OffhandFlintlock
 	FrameIndex PSNH G 0 6
 	FrameIndex PSNH H 0 7
 	FrameIndex PSNH I 0 8
+	FrameIndex PSNH J 0 9
+	FrameIndex PSNH K 0 10
 	
 	NOINTERPOLATION
 	

@@ -1,5 +1,5 @@
 
-class PBullets : Ammo replaces clip
+class PBullets : Ammo
 {
 	default
 	{
@@ -28,7 +28,7 @@ class PBullets2 : PBullets
 	}
 }
 
-class PBulletBox : PBullets replaces Clipbox
+class PBulletBox : PBullets
 {
 	default
 	{
@@ -49,7 +49,7 @@ class PPellet : Shell {}
 
 class PPelletBox : ShellBox {}
 
-class PBallammo : ammo replaces rocketammo
+class PBallammo : ammo
 {
 	default
 	{
@@ -70,7 +70,7 @@ class PBallammo : ammo replaces rocketammo
 	}
 }
 
-class PBallsammo : PBallammo replaces rocketbox
+class PBallsammo : PBallammo
 {
 	default
 	{
@@ -125,7 +125,7 @@ class PBombPile : PBombammo
 	}
 }
 
-class PExplosivePile : RandomSpawner replaces Cell
+class PExplosivePile : RandomSpawner
 {
 	default
 	{
@@ -133,11 +133,29 @@ class PExplosivePile : RandomSpawner replaces Cell
 	}
 }
 
-class PBigExplosivePile : RandomSpawner replaces Cellpack
+class PBigExplosivePile : RandomSpawner
 {
 	default
 	{
 		dropItem "PBallsammo";
 		dropItem "PBombPile";
+	}
+}
+
+class Grog1 : Cell
+{
+	Default
+	{
+	RenderStyle "Translucent";
+	alpha 0.9;
+	}
+}
+
+class Grog2 : Cellpack
+{
+	Default
+	{
+	RenderStyle "Translucent";
+	alpha 0.9;
 	}
 }

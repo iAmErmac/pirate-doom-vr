@@ -1,0 +1,78 @@
+
+Model PDVR_Musket
+{
+	Path "models/musket"
+	Model 0 "musket.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex SGUN A 0 0 	FrameIndex SGUN A 1 28
+	
+	//Fire
+	FrameIndex SGUN B 0 1 	FrameIndex SGUN B 1 29
+	FrameIndex SGUN C 0 2 	FrameIndex SGUN C 1 30
+	FrameIndex SGUN D 0 3 	FrameIndex SGUN D 1 31
+	FrameIndex SGUN E 0 4 	FrameIndex SGUN E 1 32
+	FrameIndex SGUN F 0 5 	FrameIndex SGUN F 1 33
+	FrameIndex SGUN G 0 6 	FrameIndex SGUN G 1 34
+	FrameIndex SGUN H 0 7 	FrameIndex SGUN H 1 35
+	FrameIndex SGUN I 0 8 	FrameIndex SGUN I 1 36
+}
+
+//without hand
+Model PDVR_Musket
+{
+	Path "models/musket"
+	Model 0 "musket.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex SGNH A 0 0
+	
+	//Fire
+	FrameIndex SGNH B 0 1
+	FrameIndex SGNH C 0 2
+	FrameIndex SGNH D 0 3
+	FrameIndex SGNH E 0 4
+	FrameIndex SGNH F 0 5
+	FrameIndex SGNH G 0 6
+	FrameIndex SGNH H 0 7
+	FrameIndex SGNH I 0 8
+}
+
+//muzzle flash
+Model PDVR_Musket
+{
+	Path "models/musket"
+	Model 0 "musket_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex SHTF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex SHTF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex SHTF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex SHTF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex SHTF E 0 0
+}

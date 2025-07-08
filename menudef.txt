@@ -101,6 +101,8 @@ OptionMenu "PDVROptions"
 	Title "$PDVR_OPTIONS"
 	
 	StaticText " "
+	StaticText "$PDVR_WEAPON_OPTIONS", "Gold"
+	Slider "$PDVR_WEAPON_SCALE",		"vr_weaponScale", 		0.1, 3.0, 0.1, 2
 	Option "$PDVR_WEAPON_MODEL", 		"pdvr_weapon_model", 		"PDVR_WeaponModel_Options"
 	Option "$PDVR_WEAPON_PICKUP", 		"pdvr_weapon_pickup", 		"PDVR_WeaponPickup_Options"
 	Option "$PDVR_WEAPON_FLASH", 		"pdvr_muzzle_flash", 		"OnOff"
@@ -108,4 +110,13 @@ OptionMenu "PDVROptions"
 	Option "$PDVR_WEAPON_SMOKE", 		"pdvr_weapon_smoke", 		"OnOff"
 	Option "$PDVR_BOMB_IGNITEMODE", 	"pdvr_bomb_ignite", 		"PDVR_Bomb_Options"
 	Option "$PDVR_OFFHAND_SWORD", 		"pdvr_offhand_equip", 		"PDVR_Offhand_Options"
+	SafeCommand "$OPTMNU_DEFAULTS", "resetcvar pdvr_weapon_model pdvr_weapon_pickup pdvr_muzzle_flash pdvr_flash_alpha pdvr_weapon_smoke pdvr_bomb_ignite pdvr_offhand_equip"
+	
+	StaticText " "
+	StaticText "$PDVR_HUD_OPTIONS", "Gold"
+	ScaleSlider "$PDVR_HUD_SCALE", 		"hud_scale", 			-1.0, 8.0, 1.0, "$SCALEMNU_USEUI", "$SCALEMNU_USEFS"
+	ScaleSlider "$PDVR_MSG_SCALE", 		"con_scaletext", 		0.0, 8.0, 1.0, "$SCALEMNU_USEUI"
+	ScaleSlider "$PDVR_CON_SCALE", 		"con_scale", 			0.0, 8.0, 1.0, "$SCALEMNU_USEUI"
+	Option "$PDVR_SHOW_FPS", 		"vid_fps", 			"OnOff"
+	SafeCommand "$OPTMNU_DEFAULTS", "resetcvar hud_scale con_scaletext con_scale vid_fps"
 }

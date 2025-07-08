@@ -1,0 +1,34 @@
+
+Model PDVR_GrogSpitter
+{
+	Path "models/grog"
+	Model 0 "grog.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex PLSG A 0 0 	FrameIndex PLSG A 1 60
+	
+	//Fire
+	FrameIndex PLSG B 0 1 	FrameIndex PLSG B 1 61
+}
+
+//without hand
+Model PDVR_GrogSpitter
+{
+	Path "models/grog"
+	Model 0 "grog.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex PLNH A 0 0
+	
+	//Fire
+	FrameIndex PLNH B 0 1
+}

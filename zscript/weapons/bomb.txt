@@ -145,7 +145,7 @@ class Bomb : Actor
 		wallbouncefactor 0.001;
 		BounceCount 0;
 		Obituary "%o exploded.";
-		scale 0.2;
+		scale 0.5;
 		+NOBLOCKMONST
 		+NOBLOCKMAP
 		-ALLOWBOUNCEONACTORS	
@@ -155,15 +155,15 @@ class Bomb : Actor
 	States
 	{
 	Spawn:
-		BFS1 A 0 A_StartSound("fuse/fuse");
-		BFS1 A 1;
-		BFS1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS",1);
-		BFS1 BABA 1 A_StartSound("fuse/fuse");
-		BFS1 BABABABAB 1;
-		BFS1 ABABAB 2 A_spawnitemex ("sparks2", 0, -14, 0, frandom (-1, 1), frandom (-1, -3), frandom (0, 2));
-		BFS1 A 1 A_Spawnitemex("explosao",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS);
-		BFS1 A 1 A_Spawnitemex("explosaomissile",0,0,-46,0,0,0,0, SXF_TRANSFERPOINTERS);
-		BFS1 A 0 A_Alertmonsters;
+		BMB1 A 0 A_StartSound("fuse/fuse");
+		BMB1 A 1;
+		BMB1 A 0 A_ChangeFlag("BLOCKEDBYSOLIDACTORS",1);
+		BMB1 BABA 1 A_StartSound("fuse/fuse");
+		BMB1 BABABABAB 1;
+		BMB1 ABABAB 2 A_spawnitemex ("PDSparks2", 0, -14, 0, frandom (-1, 1), frandom (-1, -3), frandom (0, 2));
+		BMB1 A 1 A_Spawnitemex("PDExplosao",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS);
+		BMB1 A 1 A_Spawnitemex("PDExplosaomissile",0,0,-46,0,0,0,0, SXF_TRANSFERPOINTERS);
+		BMB1 A 0 A_Alertmonsters;
 		Stop;
 
 	}
@@ -174,5 +174,81 @@ class Bomb2 : Bomb
 	Default
 	{
 		speed 35;
+	}
+}
+
+class PDExplosion : Actor
+{
+	Default
+	{
+	Obituary "%o exploded.";
+	renderstyle "Add";
+	alpha 0.6;
+	+noblockmap
+	+THRUACTORS
+	+NOINTERACTION
+	+CANPASS
+	+NOCLIP
+	+SOLID
+	-PUSHABLE
+	mass 10000000000;
+	}
+	
+	states
+	{
+	spawn:
+		TSMK A 0 A_explode(random (150,300),100,0);
+		TSMK A 3 bright A_explode(random (150,300),100,0);
+		TSMK B 3 bright A_Spawnitemex("PDExplosao",0,0,40,0,0,0,0,0,0);
+		TSMK CDEFGHIJ 3 Bright;
+		stop;
+	}
+}
+
+class PDExplosao : Actor
+{
+	Default
+	{
+	+NOCLIP
+	+NOGRAVITY
+	}
+
+	states
+	{
+	Spawn:
+		TNT1 A 8 Light("explosao");
+		stop;
+	}
+}
+
+class PDExplosaomissile : Actor
+{
+	Default
+	{
+	Obituary "%o exploded.";
+	damage 1000;
+	+noblockmap
+	+THRUACTORS
+	+NOINTERACTION
+	+NOGRAVITY
+	+FLOAT
+	+CANPASS
+	+NOCLIP
+	+FORCERADIUSDMG
+	}
+	
+	states
+	{
+	spawn:
+		TNT1 B 1;
+		TNT1 B 1 A_StartSound("weapons/rocklx",CHAN_AUTO);
+		TNT1 B 1;
+		TNT1 B 2 A_StartSound("cannon/shot",CHAN_WEAPON);
+		TNT1 C 0 A_explode(random (100, 300),250,0,0,0);
+		TNT1 B 6 A_Spawnitemex("PDExplosion",0,0,54,0,0,0,0,0,0);
+		TNT1 C 0 A_quake(3,6,50,800,0);
+		TNT1 C 2;
+		TNT1 C 0 A_Spawnitemex("PDSmoke4",0,0,54,0,0,1,0,0,0);
+		stop;
 	}
 }

@@ -1,0 +1,137 @@
+/***** Bullet Chips *****/
+
+decal BulletChip1
+{
+	pic CHIP1
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+}
+
+decal BulletChip2
+{
+	pic CHIP2
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+}
+
+decal BulletChip3
+{
+	pic CHIP3
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+}
+
+decal BulletChip4
+{
+	pic CHIP4
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+}
+
+decal BulletChip5
+{
+	pic CHIP5
+	translucent 0.85
+	shade "00 00 00"
+	x-scale 0.8
+	y-scale 0.8
+	randomflipx
+	randomflipy
+}
+
+decalgroup BulletChip
+{
+	BulletChip1	1
+	BulletChip2	1
+	BulletChip3	1
+	BulletChip4	1
+	BulletChip5	1
+}
+
+decal Bullet1
+{
+	pic CHIP1
+	shade "FF C8 00"
+	fullbright
+	x-scale 0.4
+	y-scale 0.4
+	lowerdecal BulletChip
+	animator GoAway
+}
+
+decal Bullet2
+{
+	pic CHIP2
+	shade "FF C8 00"
+	fullbright
+	x-scale 0.4
+	y-scale 0.4
+	lowerdecal BulletChip
+	animator GoAway
+}
+
+decal Bullet3
+{
+	pic CHIP3
+	shade "FF C8 00"
+	fullbright
+	x-scale 0.4
+	y-scale 0.4
+	lowerdecal BulletChip
+	animator GoAway
+}
+
+decal Bullet4
+{
+	pic CHIP4
+	shade "FF C8 00"
+	fullbright
+	x-scale 0.4
+	y-scale 0.4
+	lowerdecal BulletChip
+	animator GoAway
+}
+
+decal Bullet5
+{
+	pic CHIP5
+	shade "FF C8 00"
+	fullbright
+	x-scale 0.4
+	y-scale 0.4
+	lowerdecal BulletChip
+	animator GoAway
+}
+
+decalgroup Bullet
+{
+	Bullet1	1
+	Bullet2	1
+	Bullet3	1
+	Bullet4	1
+	Bullet5	1
+}
+
+
+/***** Generators **********************************************************/
+
+generator PDCannonball2	Scorch
+generator PDCannonball	Scorch
+generator PDCannonball3	BaronScorch
+generator PDCopperball	Scorch

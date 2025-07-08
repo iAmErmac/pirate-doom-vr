@@ -16,10 +16,10 @@ class PDVR_Captain : DoomPlayer
 	Player.StartItem "PBullets", 50;
 	Player.WeaponSlot 1, "PDVR_Cutlass", "PDVR_OffhandCutlass";
 	Player.WeaponSlot 2, "PDVR_Flintlock", "PDVR_OffhandFlintlock";
-	Player.WeaponSlot 3, "PDVR_Blunderbuss", "PDVR_NockGun";
+	Player.WeaponSlot 3, "PDVR_Blunderbuss", "PDVR_Musket", "PDVR_NockGun", "PDVR_SuperPistol";
 	Player.WeaponSlot 4, "PDVR_Repeater";
 	Player.WeaponSlot 5, "PDVR_Cannon";
-	Player.WeaponSlot 6, "PDVR_SwivelCannon";
-	Player.WeaponSlot 7, "PDVR_Bomb", "PDVR_Mortar";
+	Player.WeaponSlot 6, "PDVR_SwivelCannon", "PDVR_GrogSpitter";
+	Player.WeaponSlot 7, "PDVR_Bomb", "PDVR_GrogBomb", "PDVR_Mortar";
 	}
 }

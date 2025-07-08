@@ -8,3 +8,7 @@
 #include "modeldefs/swivelcannon.txt"
 #include "modeldefs/bomb.txt"
 #include "modeldefs/mortar.txt"
+#include "modeldefs/musket.txt"
+#include "modeldefs/superpistol.txt"
+#include "modeldefs/grog.txt"
+#include "modeldefs/grogbomb.txt"

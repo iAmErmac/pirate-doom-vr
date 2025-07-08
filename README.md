@@ -4,12 +4,14 @@
 
 ## Swashbucklin’ Shenanigans in VR
 
-Avast, ye landlubbers! Feast yer peepers on this grog-soaked VR mod for Pirate Doom, where the high seas o’ demon-slayin’ get a virtual kick in the britches! This ain’t yer grandpappy’s Doom—nay, we’re talkin’ Pirate Doom, where Doomguy swaps his rocket launcher for a rusty cutlass and blasts Cyberpirates with a blunderbuss that’s seen better days. Now, with this VR mod, ye strap on yer Oculus (or whate’er VR contraption ye fancy) and dive headfirst into a VR maelstrom o’ cannonballs, zombie scurvy dogs, and parrots that probably swear worse than ye do!
+Avast, ye landlubbers! Feast yer peepers on this grog-soaked VR mod for Pirate Doom, where the high seas o’ demon-slayin’ get a virtual kick in the britches! This ain’t yer grandpappy’s Doom—nay, we’re talkin’ Pirate Doom, where Doomguy swaps his rocket launcher for a rusty cutlass and blasts Cyberpirates with a blunderbuss that’s seen better days. Now, with this VR mod, ye strap on yer headset and dive headfirst into a VR maelstrom o’ cannonballs, zombie scurvy dogs, and parrots that probably swear worse than ye do!
 
-What’s the treasure, ye ask? VR weapons that jabber in pirate tongue! Picture this: ye swing a virtual cutlass that hollers “Avast, ye bilge rat!” or fire a flintlock pistol that roars “Shiver me timbers!” with every shot. It’s like ye’re not just playin’—ye’re livin’ the pirate’s life, dodgin’ cannon fire and slappin’ demonic buccaneers in glorious 3D! This mod’s so immersive, ye’ll be wipin’ virtual sea spray off yer goggles and checkin’ fer barnacles on yer headset. So, ready yer sea legs, grab yer VR rig, and sail into Pirate Doom like the saltiest dog on the seven seas! Argh!
+What’s the treasure, ye ask? VR weapons that jabber in pirate tongue! Picture this: ye swing a virtual cutlass that hollers “Avast, ye bilge rat!” or fire a flintlock pistol that roars “Shiver me timbers!” with every shot. It’s like ye’re not just playin’—ye’re livin’ the pirate’s life, dodgin’ cannon fire and slappin’ demonic buccaneers in glorious VR! This mod’s so immersive, ye’ll be wipin’ virtual sea spray off yer goggles and checkin’ fer barnacles on yer headset. So, ready yer sea legs, grab yer VR rig, and sail into Pirate Doom like the saltiest dog on the seven seas! Argh!
 
  - Get Pirate Doom: https://www.moddb.com/mods/pirate-doom/downloads
  - Get Pirate Doom 2: https://www.doomworld.com/forum/topic/143805-pirate-doom-ii-finished/
+ 
+This mod works with both Pirate Doom and Pirate Doom 2 (you get wad specific weapons and drops)
 
 ## Installation
 
@@ -21,7 +23,7 @@ Latest QuestZDoom PC-VR: https://github.com/emawind84/QuestZDoom/releases/latest
 
 To install:
 
-    Download Pirate Doom/Pirate DOom2.
+    Download Pirate Doom/Pirate Doom2.
     Extract QuestZDoom to a folder.
     Copy original doom wads into the folder.
     Copy Pirate Doom wads into the folder.

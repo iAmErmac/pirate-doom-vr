@@ -1,0 +1,74 @@
+
+Model PDVR_SuperPistol
+{
+	Path "models/s_pistol"
+	Model 0 "s_pistol.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex SHT2 A 0 0 	FrameIndex SHT2 A 1 52
+	
+	//Fire
+	FrameIndex SHT2 B 0 1 	FrameIndex SHT2 B 1 53
+	FrameIndex SHT2 C 0 2 	FrameIndex SHT2 C 1 54
+	FrameIndex SHT2 D 0 3 	FrameIndex SHT2 D 1 55
+	FrameIndex SHT2 E 0 4 	FrameIndex SHT2 E 1 56
+	FrameIndex SHT2 F 0 5 	FrameIndex SHT2 F 1 57
+	FrameIndex SHT2 G 0 6 	FrameIndex SHT2 G 1 58
+}
+
+//without hand
+Model PDVR_SuperPistol
+{
+	Path "models/s_pistol"
+	Model 0 "s_pistol.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex S2NH A 0 0
+	
+	//Fire
+	FrameIndex S2NH B 0 1
+	FrameIndex S2NH C 0 2
+	FrameIndex S2NH D 0 3
+	FrameIndex S2NH E 0 4
+	FrameIndex S2NH F 0 5
+	FrameIndex S2NH G 0 6
+}
+
+//muzzle flash
+Model PDVR_SuperPistol
+{
+	Path "models/s_pistol"
+	Model 0 "s_pistol_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex SHTF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex SHTF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex SHTF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex SHTF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex SHTF E 0 0
+}

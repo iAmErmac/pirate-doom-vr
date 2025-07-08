@@ -1,0 +1,136 @@
+pointlight FlashYellowSmall
+{
+    color 0.98 0.81 0.34
+    size 25
+    offset 0 0 0
+}
+
+pointlight FlashYellowMedium
+{
+    color 0.98 0.81 0.34
+    size 35
+    offset 0 0 0
+}
+
+pointlight FlashYellowBig
+{
+    color 0.98 0.81 0.34
+    size 45
+    offset 0 0 0
+}
+
+pointlight FlashGreen
+{
+    color 0.0 1.0 0.15
+    size 20
+    offset 0 0 0
+}
+
+pointlight FlashGreenHuge
+{
+    color 0.0 1.0 0.15
+    size 80
+    offset 0 0 0
+}
+
+object PDVRPistolFlash
+{
+	frame TNT1A { light FlashYellowSmall }
+}
+
+object  PDVRShotgunFlash
+{
+	frame TNT1A { light FlashYellowMedium }
+}
+
+object  PDVRShotgunBigFlash
+{
+	frame TNT1A { light FlashYellowBig }
+}
+
+object  PDGrogSpit
+{
+	frame PLSS { light FlashGreen }
+}
+
+object  PDGrogBombProjectile
+{
+	frame BFE1 { light FlashGreenHuge }
+}
+
+
+
+pointlight BPUFF
+{
+	color 0.5 0.4 0.0
+	size 4
+}
+
+pulselight EXPLOSAO
+{
+	color 0.4 0.4 0.1
+	size 80
+	secondarySize 110
+	interval 0.5
+}
+
+pulselight EXPLOSAO2
+{
+	color 0.7 0.4 0.2
+	size 80
+	secondarySize 110
+	interval 0.5
+}
+
+pulselight LOSTSOUL
+{
+	color 0.5 0.2 0.0
+	size 30
+	secondarySize 40
+	interval 0.9
+    
+}
+
+object bulletpuff
+{
+	frame PUFF { light Bpuff }
+}
+
+object PDPuff
+{
+	frame PUFF { light Bpuff }
+	frame HPUF { light Bpuff }
+	frame HGRN { light Bpuff }
+}
+
+object PDSparks
+{
+	frame WRBL { light Bpuff }
+}
+
+object PDSparks2
+{
+	frame WRBL { light Bpuff }
+}
+
+object PDCopperball
+{
+	frame MISL { light explosao2 }
+}
+
+object PDCannonball
+{
+	frame MISL { light explosao2 }
+}
+
+object PDCannonball2
+{
+	frame MISL { light explosao2 }
+	frame FBXP { light explosao2 }
+}
+
+object PDCannonball3
+{
+	frame FBXP { light lostsoul }
+	frame MISL { light lostsoul }
+}

@@ -34,11 +34,11 @@ class PDVR_Cannon : DoomWeaponZ
 		CANO A 0 A_SetWeaponModel("CANH");
 		#### # 4 A_StartSound("fuse/fuse");
 		#### # 0 A_GunFlash;
-		#### # 2 A_FireProjectile("CannonBall2",0,1,0,0,0);
+		#### # 2 A_FireProjectile("PDCannonBall2",0,1,0,0,0);
 		#### # 0 A_StartSound("cannon/shot", CHAN_WEAPON);
 		#### # 2 A_quake(2,6,0,10,0);
 		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
-		#### # 0  A_firecustommissile("CannonBarrelSmoke", 0, 0, 0, 12);
+		#### # 0 A_FireProjectile("CannonBarrelSmoke", 0, 0, 0, 12);
 		#### # 14 A_Recoil(4);
 		#### # 5;
 		#### # 4 A_ReFire;
@@ -47,17 +47,18 @@ class PDVR_Cannon : DoomWeaponZ
 		CANO A 0 A_SetWeaponModel("CANH");
 		#### # 6 A_StartSound("fuse/fuse");
 		#### # 0 A_GunFlash;
-		#### # 2 A_FireProjectile("copperball",0,1,0,6,0);
+		#### # 2 A_FireProjectile("PDCopperball",0,1,0,6,0);
 		#### # 0 A_StartSound("cannon/shot", CHAN_WEAPON);
 		#### # 2 A_quake(3,6,0,10,0);
 		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
-		#### # 0  A_firecustommissile("CannonBarrelSmoke", 0, 0, 0, 12);
+		#### # 0 A_FireProjectile("CannonBarrelSmoke", 0, 0, 0, 12);
 		#### # 25 A_Recoil(6);
 		#### # 5;
 		#### # 4 A_ReFire;
 		Goto Ready;
 	Flash:
-		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 5);
+		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 6);
+		TNT1 A 0 A_FireProjectile("CannonFlashSpawner",0,0,0,0,FPF_NOAUTOAIM,0);
 		TNT1 A 0 A_OverlayFlags(OverlayID(), PSPF_RENDERSTYLE | PSPF_FORCEALPHA, true);
 		TNT1 A 0 A_OverlayRenderstyle(OverlayID(), STYLE_Add);
 		TNT1 A 0 A_OverlayAlpha(OverlayID(), invoker.weaponFlashAlpha);
@@ -84,6 +85,157 @@ class PDVR_Cannon : DoomWeaponZ
 		Stop;
 	Placeholder:
 		CANH A 0;
+		Stop;
+	}
+}
+
+class PDCannonBall : Actor
+{
+	Default
+	{
+	speed 20;
+	damage 30;
+	mass 500;
+	renderstyle "normal";
+	alpha 1.0;
+	gravity 0.125;
+	radius 8;
+	projectile;
+	scale 1.4;
+	BounceSound "cannon/bounce";
+	BounceType "Doom";
+	BounceFactor 0.8;
+	BounceCount 3;
+	Obituary "$OB_CANNONBALL";
+	-NOGRAVITY
+	//+MTHRUSPECIES
+	//+DONTHARMCLASS
+	//+DONTHARMSPECIES
+	+DONTFALL
+	+DEHEXPLOSION
+	}
+	
+	States
+	{
+	Spawn:
+		CANB A 1;
+		CANB A 0 A_JumpIf(pos.z <= floorz+4,"FloorHit");
+		CANB A 10 A_spawnitemex ("PDSmoke3");
+		CANB A 0 A_changeflag ("DONTOVERLAP", 1);
+		loop;
+	floorhit:
+		CANB A 0 A_StartSound("cannon/bounce");
+		CANB A 1 A_spawnitemex ("PDSparks2", 0, frandom (-4, 4), 0, frandom (0, 2), frandom (0, 2), frandom (0, 2));
+		goto spawn;
+	Death:
+		MISL B 0 A_SetTranslucent (0.4, 0);
+		FBXP B 0 A_StartSound("weapons/rocklx");
+		FBXP B 0 A_NoGravity;
+		FBXP A 8 Bright A_EXPLODE(128,128,0);
+		FBXP B 6 Bright;
+		FBXP C 4 Bright a_spawnitemex("PDSmoke4",0,0,0,0,0,1);
+		Stop;
+	}
+}
+
+class PDCannonball2 : PDCannonBall
+{
+	Default
+	{
+	speed 30;
+	damage 60;
+	-MTHRUSPECIES
+	-DONTHARMCLASS
+	-DONTHARMSPECIES
+	-NOBLOCKMAP
+	-BOUNCEONWALLS
+	-ALLOWBOUNCEONACTORS
+	+DONTREFLECT
+	}
+
+	states
+	{
+	death:
+		MISL B 0 A_SetTranslucent (0.4, 0);
+		MISL B 0 A_StartSound("weapons/rocklx");
+		FBXP B 0 A_NoGravity;
+		FBXP A 6 Bright A_EXPLODE(128,56,1);
+		FBXP B 4 Bright a_spawnitemex("PDSmoke4",0,0,0,0,0,1);
+		FBXP C 3 Bright;
+		stop;
+	}
+}
+
+class PDCopperball : PDCannonball2
+{
+	Default
+	{
+	speed 14;
+	damage 30;
+	radius 10;
+	height 24;
+	mass 500;
+	Obituary "$OB_COPPERBALL";
+	scale 0.2;
+	ProjectileKickBack 200;
+	BounceCount 6;
+	BounceFactor 1;
+	gravity .125;
+	+solid
+	+ripper
+	-BOUNCEAUTOOFF
+	+reflective
+	+NOBLOOD
+	+NOBOSSRIP
+	+FORCERADIUSDMG
+	}
+
+	states
+	{
+	Spawn:
+		COPP A 2 A_Setscale (0.2, 0.2);
+		COPP A 2 A_Setscale (0.3, 0.3);
+		COPP A 2 A_Setscale (0.4, 0.4);
+		COPP A 2 A_Setscale (0.5, 0.5);
+		COPP A 2 A_Setscale (0.6, 0.6);
+		COPP A 2 A_Setscale (0.7, 0.7);
+		COPP A 2 A_Setscale (0.8, 0.8);
+		COPP A 2 A_Setscale (0.9, 0.9);
+		COPP A 0 A_changeflag ("DONTOVERLAP", 1);
+		goto be;
+	be:
+		COPP A 1 A_JumpIf(pos.z <= floorz+4,"FloorHit");
+		COPP A 1;
+		loop;
+	floorhit:
+		COPP A 1 A_StartSound("cannon/bounce");
+		COPP A 0 A_spawnitemex ("PDSparks2", 0, frandom (-4, 4), 0, frandom (0, 2), frandom (0, 2), frandom (0, 2));
+		COPP A 0 A_spawnitemex ("PDSparks2", 0, frandom (-4, 4), 0, frandom (0, 2), frandom (0, 2), frandom (0, 2));
+		goto be;
+	death:
+		MISL B 0 A_setscale (1);
+		MISL B 0 A_SetTranslucent (0.1, 0);
+		MISL B 0 A_StartSound("weapons/rocklx");
+		MISL B 0 A_NoGravity;
+		MISL B 6 Bright A_EXPLODE(300, 100, 1);
+		MISL C 4 Bright a_spawnitemex("PDSmoke4",0,0,0,0,0,1);
+		MISL D 3 Bright;
+		stop;
+	}
+}
+
+class CannonFlashSpawner : ShotgunFlashSpawner
+{
+	default
+	{
+	Speed 20;
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0 A_SpawnItemEx("PDVRShotgunBigFlash");
 		Stop;
 	}
 }

@@ -196,6 +196,62 @@ class ShotgunBarrelSmoke: PistolSmoke
 	}
 }
 
+class MusketSmoke : HandgunSmoke
+{
+	Default
+	{
+	alpha 0.6;
+	scale 0.3;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 ABCDEFGHIJKLMNOPQR 2 A_SpawnItemEx("MusketSmokeTrail",random(-4,4),random(-4,4),random(-4,4),0,0,0,0);
+		stop;
+	}
+}
+
+class MusketSmokeTrail : MusketSmoke
+{
+	Default
+	{
+	alpha .3;
+	vspeed 0;
+	scale .15;
+	}
+	
+	states
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(scale.x*randompick(-1,1),scale.y*randompick(-1,1));
+		SMK1 DEFGHIJKLMNOPQR 2;
+		stop;
+	}
+}
+
+class MusketBarrelSmoke: PistolSmoke
+{
+	default
+	{
+	speed 15;
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		//TNT1 A 0 A_SpawnItemEx("MusketSmoke",random(35,45),0,random(1,2),1.5,0,0.2,0);
+		TNT1 A 0
+		{
+			let puff = Actor.Spawn("MusketSmoke", pos);
+			if(puff) puff.Vel3DFromAngle(1.5, angle + random[smoke](-4,4), pitch + random[smoke](-3,3));
+		}
+		Stop;
+	}
+}
+
 class CannonSmoke : HandgunSmoke
 {
 	Default
@@ -249,5 +305,50 @@ class CannonBarrelSmoke: PistolSmoke
 			if(puff) puff.Vel3DFromAngle(1.5, angle + random[smoke](-12,12), pitch + random[smoke](-8,8));
 		}
 		Stop;
+	}
+}
+
+class PDSmoke1 : Actor
+{
+	default
+	{
+	renderstyle "Add";
+	alpha 0.4;
+	scale 0.2;
+	+FORCEXYBILLBOARD
+	+NOCLIP
+	+NOGRAVITY
+	}
+	
+	states
+	{
+	Spawn:
+		SMOK ABCDEFGHIJKLMNOPQR 2;
+		stop;
+	}
+}
+
+class PDSmoke2 : PDSmoke1
+{
+	Default
+	{
+	scale 0.3;
+	}
+}
+
+class PDSmoke3 : PDSmoke1
+{
+	Default
+	{
+	scale 0.4;
+	}
+}
+
+class PDSmoke4: PDSmoke1
+{
+	Default
+	{
+	alpha 1;
+	scale 0.8;
 	}
 }

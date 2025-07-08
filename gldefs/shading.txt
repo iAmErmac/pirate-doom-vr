@@ -44,7 +44,27 @@ material texture "models/bomb/bomb.png"
 	shader "shaders/SimSun.fp"
 }
 
+material texture "models/bomb/gbomb.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
 material texture "models/mortar/mortar.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/musket/musket.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/s_pistol/s_pistol.png"
+{
+	shader "shaders/SimSun.fp"
+}
+
+material texture "models/grog/grog.png"
 {
 	shader "shaders/SimSun.fp"
 }

@@ -1,0 +1,50 @@
+
+class PDVR_GrogSpitter : DoomWeaponZ
+{
+	Default
+	{
+		Weapon.SelectionOrder 100;
+		Weapon.AmmoUse 1;
+		Weapon.AmmoGive 40;
+		Weapon.AmmoType "Cell";
+		Inventory.PickupMessage "$GOTGROGSPITTER";
+		Tag "$TAG_GROGSPITTER";
+	}
+	States
+	{
+	Ready:
+		TNT1 A 0;
+		PLSG A 0 A_SetWeaponModel("PLNH");
+		#### A 1 A_WeaponReady;
+		Loop;
+	Deselect:
+		PLSG A 0 A_SetWeaponModel("PLNH");
+		#### A 1 A_Lower (160);
+		Loop;
+	Select:
+		PLSG A 0 A_SetWeaponModel("PLNH");
+		#### A 1 A_Raise (160);
+		Loop;
+	Fire:
+		PLSG B 0 A_SetWeaponModel("PLNH");
+		#### # 3 A_FirePlasma;
+		#### # 20 A_ReFire;
+		Goto Ready;
+	Spawn:
+		PLAS A -1;
+		Stop;
+	Placeholder:
+		PLNH A 0;
+		Stop;
+	}
+}
+
+class PDGrogSpit : PlasmaBall
+{
+	Default
+	{
+	DeathSound "weapons/sawup";
+	Renderstyle "Translucent";
+	Alpha 0.65;
+	}
+}
