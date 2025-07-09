@@ -119,4 +119,8 @@ OptionMenu "PDVROptions"
 	ScaleSlider "$PDVR_CON_SCALE", 		"con_scale", 			0.0, 8.0, 1.0, "$SCALEMNU_USEUI"
 	Option "$PDVR_SHOW_FPS", 		"vid_fps", 			"OnOff"
 	SafeCommand "$OPTMNU_DEFAULTS", "resetcvar hud_scale con_scaletext con_scale vid_fps"
+	
+	StaticText " "
+	StaticText "Developer", "Gold"
+	Option "Developer Mode", 		"developer", 			"OnOff"
 }

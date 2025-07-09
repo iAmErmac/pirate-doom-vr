@@ -123,7 +123,14 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 		if(hand) laflags |= LAF_ISOFFHAND;
 		let _puff = pmo.LineAttack(angle-15, 9, pitch+150, 0, "melee", "PDVR_DUmmyPuff1", laflags);
 		vector3 pipePos = _puff.pos;
-		vector3 cameraPos = owner.pos + (0,0,owner.height);// + ((Actor.AngleToVector(owner.angle, 1), 0) * 2);
+		vector3 cameraPos = owner.pos + (0,0,owner.player.viewheight);// + ((Actor.AngleToVector(owner.angle, 1), 0) * 2);
+		
+		if(developer)
+		{
+			let cameraDebugPos = owner.pos + (0,0,owner.player.viewheight) + ((Actor.AngleToVector(owner.angle, 1), 0) * 2);
+			Actor.Spawn("PDVR_DUmmyPuff1", cameraDebugPos);
+			console.printf("mouth distance: "..Level.vec3diff(cameraPos, pipePos).length());
+		}
 		
 		if(Level.vec3diff(cameraPos, pipePos).length() <= 3 && GetAge() && GetAge() % random(15,30) == 0)
 		{
