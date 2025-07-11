@@ -12,3 +12,10 @@ setslot 7 PDVR_Bomb PDVR_GrogBomb PDVR_Mortar
 setslot 8 
 setslot 9
 setslot 0
+
+addslotdefault 5 PDVR_SCannon1
+addslotdefault 5 PDVR_SCannon2
+addslotdefault 5 PDVR_SCannon3
+addslotdefault 5 PDVR_SCannon4
+addslotdefault 5 PDVR_SCannon5
+addslotdefault 5 PDVR_SCannon6

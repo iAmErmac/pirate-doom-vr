@@ -102,6 +102,7 @@ TAG_REPEATER 			= "Heavy Flintlock Repeater";
 GOTREPEATER 			= "Ye got the Heavy Flintlock Repeater!";
 TAG_CANNON 			= "Cannon";
 GOTCANNON 			= "A Cannon! Press alt fire to shoot a copper ball.";
+GOTSCANNON 			= "Say thy prayers, thou sneaky, hell-raised clothespole!";
 TAG_MINICANNON 			= "Mini Cannon";
 GOTMINICANNON 			= "Mini cannon! Press alt fire for multiball.";
 TAG_BOMB 			= "Bomb";

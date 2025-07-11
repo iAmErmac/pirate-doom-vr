@@ -56,3 +56,353 @@ Model PDVR_Cannon
 	SurfaceSkin 0 1 "flash9.png"
 	FrameIndex CANF E 0 0
 }
+
+//stationary cannons
+
+Model PDVR_SCannon1
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon1
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon1
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}
+
+Model PDVR_SCannon2
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon2
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon2
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}
+
+Model PDVR_SCannon3
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon3
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon3
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}
+
+Model PDVR_SCannon4
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon4
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon4
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}
+
+Model PDVR_SCannon5
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon5
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon5
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}
+
+Model PDVR_SCannon6
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Path "models/glove"
+	Model 1 "glove.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANO A 0 0 	FrameIndex CANO A 1 49
+}
+
+//without hand
+Model PDVR_SCannon6
+{
+	Path "models/cannon"
+	Model 0 "cannon.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	//Ready
+	FrameIndex CANH A 0 0 	FrameIndex CANH A 1 49
+}
+
+//muzzle flash
+Model PDVR_SCannon6
+{
+	Path "models/cannon"
+	Model 0 "cannon_mf.md3"
+	
+	Scale -1.0 1.0 1.0
+	Offset 0.0 -16.0 -11.0
+	
+	SurfaceSkin 0 0 "flash1.png"
+	SurfaceSkin 0 1 "flash6.png"
+	FrameIndex CANF A 0 0
+	
+	SurfaceSkin 0 0 "flash2.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF B 0 0
+	
+	SurfaceSkin 0 0 "flash3.png"
+	SurfaceSkin 0 1 "flash7.png"
+	FrameIndex CANF C 0 0
+	
+	SurfaceSkin 0 0 "flash4.png"
+	SurfaceSkin 0 1 "flash8.png"
+	FrameIndex CANF D 0 0
+	
+	SurfaceSkin 0 0 "flash5.png"
+	SurfaceSkin 0 1 "flash9.png"
+	FrameIndex CANF E 0 0
+}

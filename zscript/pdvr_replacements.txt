@@ -53,6 +53,7 @@ class PDVR_ReplacementHandler : EventHandler
 			if(!PDVerChecker.isPD2()) //replace only in Pirate Doom
 			{
 				if(e.Replacee is "BulletPuff") 			e.Replacement = 'PDPuff';
+				if(e.Replacee is "CannonBall") 			e.Replacement = 'PDCannonBall';
 			}
 			if(e.Replacee is "Plasmaball") 				e.Replacement = 'PDGrogSpit';
 			if(e.Replacee is "BFGBall") 				e.Replacement = 'PDGrogBombProjectile';
@@ -72,6 +73,15 @@ class PDVR_ReplacementHandler : EventHandler
 		
 		if(spawnedThing && spawnedThing is "Weapon")
 		{
+			//replace pistol
+			string pistolClass = "Revolver";
+			
+			if(spawnedThing is pistolClass)
+			{
+				Actor.Spawn("PDVR_Flintlock", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
 			//replace dual pistol
 			string dualPistolClass = "dualPistol";
 			
@@ -90,12 +100,125 @@ class PDVR_ReplacementHandler : EventHandler
 				spawnReplaced = true;
 			}
 			
+			//replace gatling gun
+			string cannonClass = "Cannon";
+			
+			if(spawnedThing is cannonClass)
+			{
+				Actor.Spawn("PDVR_Cannon", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace gatling gun
+			string minicannonClass = "Minicannon";
+			
+			if(spawnedThing is minicannonClass)
+			{
+				Actor.Spawn("PDVR_SwivelCannon", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
 			//replace dynamite
 			string dynamiteClass = "Dynamite";
 			
 			if(spawnedThing is dynamiteClass)
 			{
 				Actor.Spawn("PDVR_Bomb", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace dynamite
+			string dynamiteGunClass = "DynamiteLauncher";
+			
+			if(spawnedThing is dynamiteGunClass)
+			{
+				Actor.Spawn("PDVR_Mortar", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace stationary cannons
+			
+			string scannon1Class = "SCannon1";
+			
+			if(spawnedThing.getclassname() == scannon1Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon1", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon1");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon1", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			string scannon2Class = "SCannon2";
+			
+			if(spawnedThing.getclassname() == scannon2Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon2", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon2");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon2", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			string scannon3Class = "SCannon3";
+			
+			if(spawnedThing.getclassname() == scannon3Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon3", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon3");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon3", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			string scannon4Class = "SCannon4";
+			
+			if(spawnedThing.getclassname() == scannon4Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon4", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon4");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon4", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			string scannon5Class = "SCannon5";
+			
+			if(spawnedThing.getclassname() == scannon5Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon5", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon5");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon5", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			string scannon6Class = "SCannon6";
+			
+			if(spawnedThing.getclassname() == scannon6Class)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+				{
+					pmo.GiveInventory("PDVR_SCannon6", 1);
+					pmo.A_SelectWeapon("PDVR_SCannon6");
+				}
+				else
+					Actor.Spawn("PDVR_SCannon6", spawnedThing.pos);
 				spawnReplaced = true;
 			}
 		}

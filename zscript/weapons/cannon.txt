@@ -9,10 +9,11 @@ class PDVR_Cannon : DoomWeaponZ
 		Weapon.AmmoGive 2;
 		Weapon.AmmoType1 "PBallammo";
 		Weapon.AmmoType2 "PBallammo";
-		+WEAPON.NOAUTOFIRE
+		weapon.Slotnumber 5;
 		Inventory.PickupMessage "$GOTCANNON";
 		Tag "$TAG_CANNON";
 		Obituary "%o was blown up by %k's cannon.";
+		+WEAPON.NOAUTOFIRE
 	}
 	
 	States
@@ -237,5 +238,139 @@ class CannonFlashSpawner : ShotgunFlashSpawner
 		TNT1 A 1;
 		TNT1 A 0 A_SpawnItemEx("PDVRShotgunBigFlash");
 		Stop;
+	}
+}
+
+//stationary cannons
+
+class PDVR_SCannon1 : PDVR_Cannon 
+{
+	protected bool takeAway;
+
+	Default
+	{
+	scale 0.6;
+	Weapon.Selectionorder 1;
+	Weapon.AmmoUse 0;
+	Weapon.AmmoGive 0;
+	Inventory.Pickupmessage "$GOTSCANNON";
+	+WEAPON.CHEATNOTWEAPON;
+	+WEAPON.NOAUTOAIM;
+	+WEAPON.NOHANDSWITCH;
+	}
+	
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(3,0);
+		#### # 0 ACS_Execute(4,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon1", 1);
+		Stop;
+	Fire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 A_StartSound("fuse/fuse");
+		#### # 0 A_GunFlash;
+		#### # 2 A_FireProjectile("PDCannonBall2",Random(-1,1),0,0,0,500);
+		#### # 0 A_StartSound("cannon/shot", CHAN_WEAPON);
+		#### # 2 A_quake(2,6,0,10,0);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_FireProjectile("CannonBarrelSmoke", 0, 0, 0, 12);
+		#### # 14 A_Recoil(4);
+		#### # 5;
+		#### # 4 A_ReFire;
+		Goto Ready;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(3,0);
+		#### # 0 A_Jump(256,"Deselect");
+	Spawn:
+		CANH A -1;
+		Stop;
+	}
+}
+
+class PDVR_SCannon2 : PDVR_SCannon1
+{
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(21,0);
+		#### # 0 ACS_Execute(5,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon2", 1);
+		Stop;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(21,0);
+		#### # 0 A_Jump(256,"Deselect");
+	}
+}
+
+class PDVR_SCannon3 : PDVR_SCannon1
+{
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(22,0);
+		#### # 0 ACS_Execute(6,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon3", 1);
+		Stop;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(22,0);
+		#### # 0 A_Jump(256,"Deselect");
+	}
+}
+
+class PDVR_SCannon4 : PDVR_SCannon1
+{
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(23,0);
+		#### # 0 ACS_Execute(7,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon4", 1);
+		Stop;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(23,0);
+		#### # 0 A_Jump(256,"Deselect");
+	}
+}
+
+class PDVR_SCannon5 : PDVR_SCannon1
+{
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(24,0);
+		#### # 0 ACS_Execute(8,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon5", 1);
+		Stop;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(24,0);
+		#### # 0 A_Jump(256,"Deselect");
+	}
+}
+
+class PDVR_SCannon6 : PDVR_SCannon1
+{
+	states
+	{
+	Deselect:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 1 ACS_ExecuteAlways(25,0);
+		#### # 0 ACS_Execute(9,0);
+		#### # 1 A_TakeInventory("PDVR_SCannon6", 1);
+		Stop;
+	AltFire:
+		CANO A 0 A_SetWeaponModel("CANH");
+		#### # 10 ACS_ExecuteAlways(25,0);
+		#### # 0 A_Jump(256,"Deselect");
 	}
 }

@@ -4,6 +4,12 @@ DoomEdNums
 {
 	5014 	= PDVR_Repeater
 	25005 	= PDVR_DualPistol
+	25011 	= PDVR_SCannon1
+	25012 	= PDVR_SCannon2
+	25013 	= PDVR_SCannon3
+	25014 	= PDVR_SCannon4
+	25015 	= PDVR_SCannon5
+	25016 	= PDVR_SCannon6
 	25028 	= PDVR_Bomb
 	25029 	= PBombPile
 	25030 	= PDVR_Bomb
