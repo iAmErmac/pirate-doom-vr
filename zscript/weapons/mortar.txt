@@ -112,6 +112,7 @@ class PDVR_Mortar : DoomWeaponZ
 	}
 }
 
+//mortar bomb is the same as explosive bomb with faster travel speed
 class MortarBomb : Bomb
 {
 	Default

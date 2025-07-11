@@ -39,6 +39,7 @@ class PDVR_GrogSpitter : DoomWeaponZ
 	}
 }
 
+//grog spitter projectile, does the same routine as plasma projecttile
 class PDGrogSpit : PlasmaBall
 {
 	Default

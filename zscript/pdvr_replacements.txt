@@ -1,5 +1,5 @@
 
-class PDVRReplacementHandler : EventHandler
+class PDVR_ReplacementHandler : EventHandler
 {
 	override void CheckReplacement(ReplaceEvent e)
 	{
@@ -9,7 +9,7 @@ class PDVRReplacementHandler : EventHandler
 			if(e.Replacee is "Pistol") 				e.Replacement = 'PDVR_Flintlock';
 			if(e.Replacee is "RocketLauncher") 			e.Replacement = 'PDVR_Cannon';
 			
-			if(PDVerChecker.isPD2())
+			if(PDVerChecker.isPD2()) //to ensure only do these replacements in Pirate Doom 2
 			{
 				if(e.Replacee is "Chainsaw") 			e.Replacement = 'PBulletBox';
 				if(e.Replacee is "Shotgun") 			e.Replacement = 'PDVR_Musket';
@@ -34,7 +34,7 @@ class PDVRReplacementHandler : EventHandler
 			if(e.Replacee is "Shell") 				e.Replacement = 'PPellet';
 			if(e.Replacee is "ShellBox") 				e.Replacement = 'PPelletBox';
 			
-			if(PDVerChecker.isPD2())
+			if(PDVerChecker.isPD2()) //to ensure only do these replacements in Pirate Doom 2
 			{
 				if(e.Replacee is "RocketAmmo") 			e.Replacement = 'PBallammo';
 				if(e.Replacee is "RocketBox") 			e.Replacement = 'PBallsammo';
@@ -50,7 +50,7 @@ class PDVRReplacementHandler : EventHandler
 			}
 			
 			//projectile
-			if(!PDVerChecker.isPD2())
+			if(!PDVerChecker.isPD2()) //replace only in Pirate Doom
 			{
 				if(e.Replacee is "BulletPuff") 			e.Replacement = 'PDPuff';
 			}
@@ -64,18 +64,54 @@ class PDVRReplacementHandler : EventHandler
 		playerinfo player = Players[ConsolePlayer];
 		let pmo = player.mo;
 		let spawnedThing = e.Thing;
+		bool spawnReplaced;
+		
+		//following spawn classes don't exist in Pirate Doom 2, thats why can't be replaced normally
+		//have to go through hoops to find the spawn class to detect spawns and then replace as necessary
+		//this makes sure the game doesn't crash for trying to find non-existent classnames in Pirate Doom 2
+		
+		if(spawnedThing && spawnedThing is "Weapon")
+		{
+			//replace dual pistol
+			string dualPistolClass = "dualPistol";
+			
+			if(spawnedThing is dualPistolClass)
+			{
+				Actor.Spawn("PDVR_DualPistol", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace gatling gun
+			string gatlingGunClass = "gatlingun";
+			
+			if(spawnedThing is gatlingGunClass)
+			{
+				Actor.Spawn("PDVR_Repeater", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace dynamite
+			string dynamiteClass = "Dynamite";
+			
+			if(spawnedThing is dynamiteClass)
+			{
+				Actor.Spawn("PDVR_Bomb", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+		}
 		
 		if(spawnedThing && spawnedThing is "Ammo")
 		{
+			//replace bullet2
 			string bulletClass2 = "Bullets2";
-			class<Ammo> bullet2 = bulletClass2;
 			
-			if(spawnedThing is bullet2)
+			if(spawnedThing is bulletClass2)
 			{
 				Actor.Spawn("PBullets2", spawnedThing.pos);
-				spawnedThing.destroy();
-				return;
+				spawnReplaced = true;
 			}
 		}
+		
+		if(spawnReplaced) spawnedThing.destroy();
 	}
 }

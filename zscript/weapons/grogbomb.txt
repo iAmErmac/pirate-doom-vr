@@ -120,6 +120,7 @@ class PDVR_GrogBomb : DoomWeaponZ
 	}
 }
 
+//grog bomb projectile, does the same routine as bfg projecttile
 class PDGrogBombProjectile : BFGBall
 {
 	Default

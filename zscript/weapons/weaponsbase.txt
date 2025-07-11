@@ -19,6 +19,7 @@ class DoomWeaponZ : DoomWeapon
 		if(GetAge() && GetAge() % 100 == 0) readSettings();
 	}
 	
+	//reads the cvars to load with weapons
 	protected void readSettings()
 	{
 		weaponModel = CVar.GetCVar("pdvr_weapon_model").GetInt();
@@ -30,6 +31,7 @@ class DoomWeaponZ : DoomWeapon
 		bombIgniteMode = CVar.GetCVar("pdvr_bomb_ignite").GetInt();
 	}
 
+	//use to swap models based of preference
 	action void A_SetWeaponModel(String AltModel)
 	{
 		if(invoker.weaponModel > 0 && player)

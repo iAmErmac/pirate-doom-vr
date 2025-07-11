@@ -3,5 +3,5 @@ Gameinfo
 {
 	PlayerClasses = "PDVR_Captain"
 
-	AddEventHandlers = "PDVRReplacementHandler"
+	AddEventHandlers = "PDVR_ReplacementHandler", "PDVR_HudMessageHandler", "PDVR_TipsHelper"
 }

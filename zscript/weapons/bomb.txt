@@ -40,6 +40,8 @@ class PDVR_Bomb : DoomWeaponZ
 		if(bombIgniteMode == 1) fireKeyIgnite = true;
 		if(!owner.countinv("PDVR_OffhandCutlass")) fireKeyIgnite = true;
 		
+		//this code will try to force holding smoking pipe on the off-hand if you didnt disable offhand cutlass/pipe
+		//FYI PDVR_OffhandCutlass actually acts as both offhand cutlass and smoking pipe
 		if(!fireKeyIgnite)
 		{
 			if(!(owner.player.offhandweapon is "PDVR_OffhandCutlass"))
@@ -133,6 +135,7 @@ class PDVR_Bomb : DoomWeaponZ
 	}
 }
 
+//explosive bomb projectile
 class Bomb : Actor
 {
 	Default
@@ -169,6 +172,7 @@ class Bomb : Actor
 	}
 }
 
+//explosive bomb projectile for alt attack (faster travel speed)
 class Bomb2 : Bomb
 {
 	Default
@@ -177,6 +181,7 @@ class Bomb2 : Bomb
 	}
 }
 
+//explosion animation for the bomb
 class PDExplosion : Actor
 {
 	Default
@@ -205,6 +210,7 @@ class PDExplosion : Actor
 	}
 }
 
+//dynamic light for explosion
 class PDExplosao : Actor
 {
 	Default
@@ -221,6 +227,7 @@ class PDExplosao : Actor
 	}
 }
 
+//smoke spawner for explosion
 class PDExplosaomissile : Actor
 {
 	Default

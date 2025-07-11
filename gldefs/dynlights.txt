@@ -1,3 +1,6 @@
+
+//new dynamic lights added for muzzle flashes
+
 pointlight FlashYellowSmall
 {
     color 0.98 0.81 0.34
@@ -59,6 +62,7 @@ object  PDGrogBombProjectile
 }
 
 
+//dynamic lights copied from Pirate Doom
 
 pointlight BPUFF
 {

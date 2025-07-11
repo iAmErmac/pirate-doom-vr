@@ -1,14 +1,14 @@
 
-#include "modeldefs/pistol.txt"
-#include "modeldefs/sword.txt"
-#include "modeldefs/blunderbuss.txt"
-#include "modeldefs/nock.txt"
-#include "modeldefs/repeater.txt"
-#include "modeldefs/cannon.txt"
-#include "modeldefs/swivelcannon.txt"
-#include "modeldefs/bomb.txt"
-#include "modeldefs/mortar.txt"
-#include "modeldefs/musket.txt"
-#include "modeldefs/superpistol.txt"
-#include "modeldefs/grog.txt"
-#include "modeldefs/grogbomb.txt"
+#include "modeldefs/pistol.txt"		//flintlock pistol
+#include "modeldefs/sword.txt"		//cutlass sword
+#include "modeldefs/blunderbuss.txt"	//blunderbuss
+#include "modeldefs/nock.txt"		//nock volley gun
+#include "modeldefs/repeater.txt"	//heavy repeater
+#include "modeldefs/cannon.txt"		//cannon
+#include "modeldefs/swivelcannon.txt"	//mini cannon
+#include "modeldefs/bomb.txt"		//explosive bomb
+#include "modeldefs/mortar.txt"		//hand mortar
+#include "modeldefs/musket.txt"		//musket
+#include "modeldefs/superpistol.txt"	//large blunderbuss
+#include "modeldefs/grog.txt"		//grog spitter
+#include "modeldefs/grogbomb.txt"	//grob bomb

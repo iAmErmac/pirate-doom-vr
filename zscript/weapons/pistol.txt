@@ -1,6 +1,8 @@
 
 class PDVR_Flintlock : DoomWeaponZ
 {
+	bool disableDualPistol;
+
  	Default
 	{
 		Weapon.SelectionOrder 1900;
@@ -24,17 +26,28 @@ class PDVR_Flintlock : DoomWeaponZ
 		
 		if(!owner || owner.health < 1 || owner.player.readyweapon != self) return;
 		
-		if(owner.countinv("PDVR_DualPistol"))
+		//this part handles dual pistol akimbo mode
+		//if player aquires dual pistol item it'll give another pistol in hand when selected
+		
+		if(owner.countinv("PDVR_DualPistol") && !disableDualPistol)
 		{
 			owner.setinventory("PDVR_OffhandFlintlock", 1);
 		}
+	}
+	
+	action void A_ToggleDualPistol()
+	{
+		if(!player.mo.countinv("PDVR_DualPistol")) return;
+		
+		invoker.disableDualPistol = !invoker.disableDualPistol;
+		if(invoker.disableDualPistol) player.mo.findinventory("PDVR_OffhandFlintlock").destroy();
 	}
 	
 	States
 	{
 	Ready:
 		TNT1 A 0;
-		PISG A 0 A_SetWeaponModel("PSNH");
+		PISG A 0 A_SetWeaponModel("PSNH");					//this code lets swapping model betwen hand and no-hand mode
 		#### A 1 A_WeaponReady;
 		Loop;
 	Deselect:
@@ -51,14 +64,17 @@ class PDVR_Flintlock : DoomWeaponZ
 		#### # 0 A_StartSound("pistola/shot", CHAN_WEAPON);
 		#### # 0 A_GunFlash;
 		#### C 1 A_FireBullets(5.6,0,1,10,"PDPuff");
-		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);
+		#### # 0 A_JumpIf(invoker.weaponSmoke == false, 2);			//if weapon barrel smoke turned off, skip the next line
 		#### # 0 A_FireProjectile("PistolSmoke",0,0,0,0,FPF_NOAUTOAIM,0);
 		#### DEFG 1;
 		#### HIJK 2;
 		#### A 5 A_ReFire;
 		Goto Ready;
+	AltFire:
+		#### # 10 A_ToggleDualPistol;						//toggles Dual Pistol mode
+		Goto Ready;
 	Flash:
-		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 6);
+		TNT1 A 0 A_JumpIf(invoker.showWeaponFlash == false, 6);			//if weapon barrel smoke turned off, skip the whole flash routine
 		TNT1 A 0 A_FireProjectile("PistolFlashSpawner",0,0,0,0,FPF_NOAUTOAIM,0);
 		TNT1 A 0 A_OverlayFlags(OverlayID(), PSPF_RENDERSTYLE | PSPF_FORCEALPHA, true);
 		TNT1 A 0 A_OverlayRenderstyle(OverlayID(), STYLE_Add);
@@ -90,10 +106,13 @@ class PDVR_Flintlock : DoomWeaponZ
 	}
 }
 
+//offhand flintlock to use when player has duall pistol item in inventory
+//can be given or taken away only by script. can't be given by cheats
 class PDVR_OffhandFlintlock : PDVR_Flintlock
 {
 	default
 	{
+	Weapon.AmmoGive 0;
 	+WEAPON.OFFHANDWEAPON;
 	+WEAPON.NOHANDSWITCH;
 	+WEAPON.POWERED_UP;
@@ -107,12 +126,17 @@ class PDVR_OffhandFlintlock : PDVR_Flintlock
 		
 		if(!owner || owner.health < 1) return;
 		
+		//this part handles dual pistol akimbo mode
+		//if the selected weapon is not pistol, take the other pistol away
+		
 		let pistol = Weapon(owner.findinventory("PDVR_Flintlock"));
 		if(owner.player.readyweapon != pistol)
 		{
 			destroy();
 			return;
 		}
+		
+		//when this pistol is given as akimbo mode, make sure to auto equip it
 		else if(owner.player.offhandweapon != self)
 		{
 			owner.player.offhandweapon = self;
@@ -122,12 +146,31 @@ class PDVR_OffhandFlintlock : PDVR_Flintlock
 	}
 }
 
+//this item enables akimbo mode for pistol
 class PDVR_DualPistol : Inventory
 {
 	default
 	{
 	Inventory.maxamount 1;
+	Inventory.Pickupmessage "$PICKUP_DUALPISTOL";
 	scale 0.5;
+	}
+	
+	override bool TryPickup (in out Actor toucher)
+	{
+		//always gives ammo regardless of having it already;
+		toucher.giveinventory("PBullets", 20);
+		
+		//if dual pistol already picked up, make a pickup sound (got some ammo already) and remove it
+		if(toucher.countinv("PDVR_DualPistol"))
+		{
+			super.PlayPickupSound(toucher);
+			super.PrintPickupMessage(true, "$PICKUP_DUALPISTOL");
+			destroy();
+		}
+
+		// Otherwise do the usual TryPickup sequence:
+		return Super.TryPickup(toucher);
 	}
 	
 	States
@@ -138,6 +181,7 @@ class PDVR_DualPistol : Inventory
 	}
 }
 
+//actor that shows a brief muzzle flash with dynamic light
 class PDVRPistolFlash : Actor
 {
 	default
@@ -154,13 +198,14 @@ class PDVRPistolFlash : Actor
 	}
 }
 
+//actor that positions the dynamic light muzzle flash actor at barrel front
 class PistolFlashSpawner : Actor
 {
 	default
 	{
 	Radius 1;
 	Height 1;
-	Speed 10;
+	Speed 10;	//speed determines how far from barrel the dynamic light muzzle flash spawns
 	Damage 0;
 	Projectile;
 	SeeSound "";

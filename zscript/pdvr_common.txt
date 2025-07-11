@@ -173,3 +173,92 @@ class PDSparks2 : PDSparks
 	+THRUACTORS
 	}
 }
+
+//routines to show alerts for missing keybinds with the MudMessage helper
+class PDVR_TipsHelper : EventHandler
+{
+	Array<string> missingKeys;
+	int messageDelay;
+	bool messagetDone;
+	bool alertDone;
+	bool hasMissingBinds;
+	
+	override void WorldTick()
+	{
+		if(level.mapname == "TITLEMAP") return;
+		
+		if(alertDone) return;
+		
+		bool showAlert = CVar.GetCvar("pdvr_show_tips").GetBool();
+		
+		if(!showAlert || Level.Time < 280) return;
+		
+		//show queued missing keybind alert messages
+		if(missingKeys.size() && !messageDelay)
+		{
+			let keyName = missingKeys[0];
+			PDVR_HudMessage.Create(String.Format(Stringtable.Localize("$PDVRALERTMISSINGBIND"), keyName),
+					fontname: "smallfont",
+					fontColor: Font.CR_Orange,
+					alignment: PDVR_HudMessage.ALIGN_CENTER,
+					fadeInTime: 4,
+					typetime: 1,
+					holdTime: 70,
+					fadeOutTime: 8
+			);
+			missingKeys.delete(0);
+			messageDelay = 190;
+		}
+		
+		if(hasMissingBinds && missingKeys.size() == 0 && !messageDelay)
+		{
+			alertDone = true;
+			PDVR_HudMessage.Create(Stringtable.Localize("$PDVRALERTDONEMESSAGE"),
+					fontname: "smallfont",
+					fontColor: Font.CR_White,
+					alignment: PDVR_HudMessage.ALIGN_CENTER,
+					fadeInTime: 4,
+					typetime: 1,
+					holdTime: 100,
+					fadeOutTime: 8
+			);
+		}
+		
+		if(messageDelay) messageDelay--;
+	}
+	
+	override void PlayerEntered (PlayerEvent e)
+	{
+		if(level.mapname == "TITLEMAP") return;
+		
+		bool showAlert = CVar.GetCvar("pdvr_show_tips").GetBool();
+		
+		//clear previously queued messages if exist
+		let handler = PDVR_HudMessageHandler(StaticEventHandler.Find("PDVR_HudMessageHandler"));
+		for (int i = 0; i < handler.hudmessages.Size(); i++)
+		{
+			let othermsg = handler.hudmessages[i];
+			if (othermsg) othermsg.destroy();
+		}
+		
+		if(showAlert)
+		{
+			if(missingKeys.size()) missingKeys.clear();
+			Array<int> binds;
+			
+			Bindings.GetAllKeysForCommand(binds, "+oh_attack");
+			if (!binds.Size())
+			{
+				missingKeys.push("Offhand Attack");
+				hasMissingBinds = true;
+			}
+			
+			Bindings.GetAllKeysForCommand(binds, "+oh_altatk");
+			if (!binds.Size())
+			{
+				missingKeys.push("Offhand Alt-Attack");
+				hasMissingBinds = true;
+			}
+		}
+	}
+}

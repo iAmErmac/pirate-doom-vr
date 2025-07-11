@@ -1,23 +1,24 @@
 version "3.0"
 
-#include "zscript/weapons/weaponsbase.txt"
-#include "zscript/weapons/pistol.txt"
-#include "zscript/weapons/sword.txt"
-#include "zscript/weapons/blunderbuss.txt"
-#include "zscript/weapons/nock.txt"
-#include "zscript/weapons/repeater.txt"
-#include "zscript/weapons/cannon.txt"
-#include "zscript/weapons/swivelcannon.txt"
-#include "zscript/weapons/bomb.txt"
-#include "zscript/weapons/mortar.txt"
-#include "zscript/weapons/musket.txt"
-#include "zscript/weapons/superpistol.txt"
-#include "zscript/weapons/grog.txt"
-#include "zscript/weapons/grogbomb.txt"
+#include "zscript/weapons/weaponsbase.txt"	//base weapon for loading cvar settings
+#include "zscript/weapons/pistol.txt"		//flintlock pistol
+#include "zscript/weapons/sword.txt"		//cutlass sword
+#include "zscript/weapons/blunderbuss.txt"	//shotgun for Pirate Doom
+#include "zscript/weapons/nock.txt"		//super shotgun for Pirate Doom
+#include "zscript/weapons/repeater.txt"		//chaingun
+#include "zscript/weapons/cannon.txt"		//cannon
+#include "zscript/weapons/swivelcannon.txt"	//mini cannon replaces plasmarifle in Pirate Doom
+#include "zscript/weapons/bomb.txt"		//explosive bomb replaces dynamite in Pirate Doom
+#include "zscript/weapons/mortar.txt"		//hand mortar replaces bfg in Pirate Doom
+#include "zscript/weapons/musket.txt"		//shotgun for Pirate Doom 2
+#include "zscript/weapons/superpistol.txt"	//super shotgun for Pirate Doom 2
+#include "zscript/weapons/grog.txt"		//grob spitter replaces plasmarifle in Pirate Doom 2
+#include "zscript/weapons/grogbomb.txt"		//grob bomb replaces bfg in Pirate Doom 2
 
-#include "zscript/actors/player.txt"
-#include "zscript/actors/ammo.txt"
-#include "zscript/actors/smokes.txt"
+#include "zscript/actors/player.txt"		//player class to use in both Pirate Doom & Pirate Doom 2
+#include "zscript/actors/ammo.txt"		//ammo replacement for both Pirate Doom & Pirate Doom 2
+#include "zscript/actors/smokes.txt"		//smoke effects
 
-#include "zscript/pdvr_common.txt"
-#include "zscript/pdvr_replacements.txt"
+#include "zscript/pdvr_common.txt"		//visual effects (puffs & sparks)
+#include "zscript/pdvr_replacements.txt"	//handles weapon and ammo replacement for Pirate Doom & Pirate Doom 2
+#include "zscript/pdvr_hudmsg.txt"		//helper class to show messages on HUD

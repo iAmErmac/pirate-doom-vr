@@ -23,14 +23,111 @@ class PDVR_Cutlass : DoomWeaponZ
 		
 		if(!owner || owner.health < 1) return;
 		
+		//this part controls having offhand cutlass in hand
+		//if offhand equip is set to none, take the offhand cutlass away
+		
 		if(offhandEquip == 2 && owner.player.offhandweapon is "PDVR_OffhandCutlass")
 		{
 			owner.takeinventory("PDVR_OffhandCutlass", 1);
 		}
 		
+		//or give the offhand cutlass back if offhand equi is set to sword or pipe
 		if(offhandEquip < 2 && !owner.countinv("PDVR_OffhandCutlass"))
 		{
 			owner.giveinventory("PDVR_OffhandCutlass", 1);
+		}
+	}
+	
+	action void  A_SwordAttack(int damage, bool norandom = false, int flags = CPF_USEAMMO, class<Actor> pufftype = "BulletPuff", double range = 0, double lifesteal = 0, int lifestealmax = 0, class<BasicArmorBonus> armorbonustype = "ArmorBonus", sound MeleeSound = 0, sound MissSound = "")
+	{
+		let player = self.player;
+		if (!player) return;
+
+		let weapon = invoker == player.OffhandWeapon ? player.OffhandWeapon : player.ReadyWeapon;
+
+		double angle;
+		double pitch;
+		FTranslatedLineTarget t;
+		int			actualdamage;
+
+		if (!norandom)
+			damage *= random[cwpunch](1, 8);
+
+		if (pufftype == NULL)
+			pufftype = 'BulletPuff';
+		int puffFlags = LAF_ISMELEEATTACK | ((flags & CPF_NORANDOMPUFFZ) ? LAF_NORANDOMPUFFZ : 0);
+		int alflags = 0;
+
+		if (weapon != NULL && weapon == invoker)
+		{
+			alflags |= weapon.bOffhandWeapon ? ALF_ISOFFHAND : 0;
+			puffFlags |= weapon.bOffhandWeapon ? LAF_ISOFFHAND : 0;
+		}
+
+		angle = self.Angle + random2[cwpunch]() * (5.625 / 256);
+		if (range == 0) range = DEFMELEERANGE;
+		pitch = AimLineAttack (angle, range, t, 0., ALF_CHECK3D | alflags);
+
+		// only use ammo when actually hitting something!
+		if ((flags & CPF_USEAMMO) && t.linetarget && weapon && stateinfo != null && stateinfo.mStateType == STATE_Psprite)
+		{
+			if (!weapon.DepleteAmmo(weapon.bAltFire, true))
+				return;	// out of ammo
+		}
+
+		Actor puff;
+		[puff, actualdamage] = LineAttack (angle, range, pitch, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle, range, pitch+30, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle+30, range, pitch+30, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle-30, range, pitch+30, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle, range, pitch-30, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle+30, range, pitch-30, damage, 'Melee', pufftype, puffFlags, t);
+		LineAttack (angle-30, range, pitch-30, damage, 'Melee', pufftype, puffFlags, t);
+
+		if (!t.linetarget)
+		{
+			if (MissSound) A_StartSound(MissSound, CHAN_WEAPON);
+		}
+		else
+		{
+			if (lifesteal > 0 && !(t.linetarget.bDontDrain))
+			{
+				if (flags & CPF_STEALARMOR)
+				{
+					if (armorbonustype == NULL)
+					{
+						armorbonustype = 'ArmorBonus';
+					}
+					if (armorbonustype != NULL)
+					{
+						let armorbonus = BasicArmorBonus(Spawn(armorbonustype));
+						if (armorbonus)
+						{
+							armorbonus.SaveAmount *= int(actualdamage * lifesteal);
+							if (lifestealmax > 0) armorbonus.MaxSaveAmount = lifestealmax;
+							armorbonus.bDropped = true;
+							armorbonus.ClearCounters();
+
+							if (!armorbonus.CallTryPickup(self))
+							{
+								armorbonus.Destroy ();
+							}
+						}
+					}
+				}
+				else
+				{
+					GiveBody (int(actualdamage * lifesteal), lifestealmax);
+				}
+			}
+			if (weapon != NULL)
+			{
+				if (MeleeSound) A_StartSound(MeleeSound, CHAN_WEAPON);
+				else			A_StartSound(weapon.AttackSound, CHAN_WEAPON);
+			}
+
+			if (flags & CPF_PULLIN) self.bJustAttacked = true;
+			if (flags & CPF_DAGGER) t.linetarget.DaggerAlert (self);
 		}
 	}
 	
@@ -58,7 +155,7 @@ class PDVR_Cutlass : DoomWeaponZ
 		#### BCDEF 1;
 		#### G 1 A_StartSound("espada/swing");
 		#### H 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### H 1 A_CustomPunch(random(4,10)*2,0,0,"SwordPuff",80);
+		#### H 1 A_SwordAttack(random(4,10)*2,0,0,"SwordPuff",80);
 		#### I 2;
 		#### A 2 A_refire;
 		#### A 5;
@@ -67,7 +164,7 @@ class PDVR_Cutlass : DoomWeaponZ
 		#### JKLMN 1;
 		#### O 1 A_StartSound("espada/swing");
 		#### P 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### Q 1 A_CustomPunch(random(4,10)*6,0,0,"SwordPuff",80);
+		#### Q 1 A_SwordAttack(random(4,10)*6,0,0,"SwordPuff",80);
 		#### A 4 A_refire;
 		Goto Ready;
 	AltFire:
@@ -78,7 +175,7 @@ class PDVR_Cutlass : DoomWeaponZ
 		#### JKLMN 1;
 		#### O 1 A_StartSound("espada/swing");
 		#### P 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### P 1 A_CustomPunch(random(4,10)*2,0,0,"SwordPuff",80);
+		#### P 1 A_SwordAttack(random(4,10)*2,0,0,"SwordPuff",80);
 		#### Q 2;
 		#### A 2 A_refire;
 		#### A 5;
@@ -89,6 +186,7 @@ class PDVR_Cutlass : DoomWeaponZ
 	}
 }
 
+//works as both offhand cutlass and smoking pipe as needed (switches between modes)
 class PDVR_OffhandCutlass : PDVR_Cutlass
 {
 	bool needPipe;
@@ -115,6 +213,9 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 	{
 		if(!needPipe && offhandEquip != 1) return;
 		
+		//this is just a gimmick, but gives you the illusion of smoking the pipe
+		// hold the tip of the smoking pipe near your mouth position to smoke
+		
 		let pmo = owner.player.mo;
 		int hand = bOffhandWeapon;
 		double angle = pmo.angle;
@@ -122,9 +223,14 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 		int laflags = LAF_NOIMPACTDECAL | LAF_NOINTERACT | LAF_NORANDOMPUFFZ;
 		if(hand) laflags |= LAF_ISOFFHAND;
 		let _puff = pmo.LineAttack(angle-15, 9, pitch+150, 0, "melee", "PDVR_DUmmyPuff1", laflags);
+		
+		//this gets the position of the tip of the pip
 		vector3 pipePos = _puff.pos;
+		
+		//this gets the approximate position of your mouth
 		vector3 cameraPos = owner.pos + (0,0,owner.player.viewheight);// + ((Actor.AngleToVector(owner.angle, 1), 0) * 2);
 		
+		//debug things to show if developer mode is turned on
 		if(developer)
 		{
 			let cameraDebugPos = owner.pos + (0,0,owner.player.viewheight) + ((Actor.AngleToVector(owner.angle, 1), 0) * 2);
@@ -132,6 +238,7 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 			console.printf("mouth distance: "..Level.vec3diff(cameraPos, pipePos).length());
 		}
 		
+		//check if tip of the pipe is near mouth position, spawn puffs and smoking sound then
 		if(Level.vec3diff(cameraPos, pipePos).length() <= 3 && GetAge() && GetAge() % random(15,30) == 0)
 		{
 			Actor.Spawn("pipeSmoke", cameraPos);
@@ -150,8 +257,8 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 	Ready:
 		TNT1 A 0;
 		SWOR A 0 A_SetWeaponModel("SWNH");
-		#### A 0 A_JumpIf(invoker.needPipe, "ReadyPipe");
-		#### A 0 A_JumpIf(invoker.offhandEquip == 1, "ReadyPipe");
+		#### A 0 A_JumpIf(invoker.needPipe, "ReadyPipe");		//if offhand needs to set as smoking pipe, show pipe instead
+		#### A 0 A_JumpIf(invoker.offhandEquip == 1, "ReadyPipe");	//if offhand needs to set as smoking pipe, show pipe instead
 		#### A 1 A_WeaponReady;
 		loop;
 	ReadyPipe:
@@ -179,7 +286,7 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 		#### BCDEF 1;
 		#### G 1 A_StartSound("espada/swing");
 		#### H 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### H 1 A_CustomPunch(random(4,10)*2,0,0,"SwordPuff",80);
+		#### H 1 A_SwordAttack(random(4,10)*2,0,0,"SwordPuff",80);
 		#### I 2;
 		#### A 2 A_refire;
 		#### A 5;
@@ -188,7 +295,7 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 		#### JKLMN 1;
 		#### O 1 A_StartSound("espada/swing");
 		#### P 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### Q 1 A_CustomPunch(random(4,10)*6,0,0,"SwordPuff",80);
+		#### Q 1 A_SwordAttack(random(4,10)*6,0,0,"SwordPuff",80);
 		#### A 4 A_refire;
 		Goto Ready;
 	AltFire:
@@ -199,7 +306,7 @@ class PDVR_OffhandCutlass : PDVR_Cutlass
 		#### JKLMN 1;
 		#### O 1 A_StartSound("espada/swing");
 		#### P 1 A_CustomPunch(0,0,0,"SwordPuff2",80);
-		#### P 1 A_CustomPunch(random(4,10)*2,0,0,"SwordPuff",80);
+		#### P 1 A_SwordAttack(random(4,10)*2,0,0,"SwordPuff",80);
 		#### Q 2;
 		#### A 2 A_refire;
 		#### A 5;
