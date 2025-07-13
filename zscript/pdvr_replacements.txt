@@ -33,18 +33,16 @@ class PDVR_ReplacementHandler : EventHandler
 			if(e.Replacee is "ClipBox") 				e.Replacement = 'PBulletBox';
 			if(e.Replacee is "Shell") 				e.Replacement = 'PPellet';
 			if(e.Replacee is "ShellBox") 				e.Replacement = 'PPelletBox';
+			if(e.Replacee is "RocketAmmo") 				e.Replacement = 'PBallammo';
+			if(e.Replacee is "RocketBox") 				e.Replacement = 'PBallsammo';
 			
 			if(PDVerChecker.isPD2()) //to ensure only do these replacements in Pirate Doom 2
 			{
-				if(e.Replacee is "RocketAmmo") 			e.Replacement = 'PBallammo';
-				if(e.Replacee is "RocketBox") 			e.Replacement = 'PBallsammo';
 				if(e.Replacee is "Cell") 			e.Replacement = 'Grog1';
 				if(e.Replacee is "CellPack") 			e.Replacement = 'Grog2';
 			}
 			else
 			{
-				if(e.Replacee is "RocketAmmo") 			e.Replacement = 'PBallsammo';
-				if(e.Replacee is "RocketBox") 			e.Replacement = 'PBombammo';
 				if(e.Replacee is "Cell") 			e.Replacement = 'PExplosivePile';
 				if(e.Replacee is "CellPack") 			e.Replacement = 'PBigExplosivePile';
 			}
@@ -230,7 +228,34 @@ class PDVR_ReplacementHandler : EventHandler
 			
 			if(spawnedThing is bulletClass2)
 			{
-				Actor.Spawn("PBullets2", spawnedThing.pos);
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+					pmo.GiveInventory("PBullets2", 1);
+				else
+					Actor.Spawn("PBullets2", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace dynamite ammo
+			string dynamiteAmmoClass = "dynamiteammo";
+			
+			if(spawnedThing.getclassname() == dynamiteAmmoClass)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+					pmo.GiveInventory("PBombammo", 1);
+				else
+					Actor.Spawn("PBombammo", spawnedThing.pos);
+				spawnReplaced = true;
+			}
+			
+			//replace dynamite box
+			string dynamiteCrateClass = "dynamitesammo";
+			
+			if(spawnedThing.getclassname() == dynamiteCrateClass)
+			{
+				if(spawnedThing.bNoBlockmap && spawnedThing.bNoSector && Inventory(spawnedThing).owner && Inventory(spawnedThing).owner is "PlayerPawn")
+					pmo.GiveInventory("PBombPile", 1);
+				else
+					Actor.Spawn("PBombPile", spawnedThing.pos);
 				spawnReplaced = true;
 			}
 		}
